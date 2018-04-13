@@ -1,0 +1,59 @@
+set nocompatible
+syntax on
+set nowrap
+set encoding=utf8
+
+" Disable file type for plugins
+filetype off
+
+" install vim-plug if not installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnger * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+" setup plugins
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/vim-easy-align'
+Plug 'scrooloose/nerdtree'
+
+call plug#end()
+
+" Set filetype plugin back to on
+filetype plugin on
+
+" Show linenumbers
+set number relativenumber
+set ruler
+
+" Set proper tabs
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+
+" Always display the status line
+set laststatus=2
+
+" setup powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+" Themes and Styling
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
+set t_Co=256
+" set background=dark
+
+
+" let base16colorspace=256
+colorscheme morning
+let g:spacegray_use_italics = 1
+let g:spacegray_underline_search = 1
+let g:spacegray_italicize_comments = 1
+
+" setup nerdtree stuff
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
