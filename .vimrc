@@ -6,21 +6,6 @@ set encoding=utf8
 " Disable file type for plugins
 filetype off
 
-" install vim-plug if not installed
-if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnger * PlugInstall --sync | source $MYVIMRC
-endif
-
-
-" setup plugins
-call plug#begin('~/.vim/plugged')
-Plug 'junegunn/vim-easy-align'
-Plug 'scrooloose/nerdtree'
-
-call plug#end()
-
 " Set filetype plugin back to on
 filetype plugin on
 
@@ -38,13 +23,13 @@ set expandtab
 set laststatus=2
 
 " setup powerline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
 
 " Themes and Styling
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
-set t_Co=256
+" set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
+" set t_Co=256
 " set background=dark
 
 
