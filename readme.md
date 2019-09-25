@@ -8,11 +8,11 @@ It would be awesome if I would just remember this stuff but for now this will ha
 2. Clone this repository in that directory
 3. Create the following symlinks to the appropriate files
 
-.vim ->  `ln -s /home/shannon/git/.cfg/.vim /home/shannon/.vim`
-.vimrc -> `ln -s /home/shannon/git/.cfg/.vimrc /home/shannon/.vimrc`
-.bashrc -> `ln -s /home/shannon/git/.cfg/.bashrc /home/shannon/.bashrc`
-.zshrc -> `ln -s /home/shannon/git/.cfg/.zshrc /home/shannon/.zshrc`
-.tmux.conf -> `ln -s /home/shannon/git/.cfg/tmux.conf /home/shannon/tmux.conf
+.vim ->  `ln -s /home/shannon/git/.cfg/.vim /home/shannon/.vim`  
+.vimrc -> `ln -s /home/shannon/git/.cfg/.vimrc /home/shannon/.vimrc`  
+.bashrc -> `ln -s /home/shannon/git/.cfg/.bashrc /home/shannon/.bashrc`  
+.zshrc -> `ln -s /home/shannon/git/.cfg/.zshrc /home/shannon/.zshrc`  
+.tmux.conf -> `ln -s /home/shannon/git/.cfg/tmux.conf /home/shannon/tmux.conf`  
 
 4. Be smarter. 
 
