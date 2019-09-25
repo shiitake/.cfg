@@ -1,0 +1,6 @@
+[submodule ".vim/pack/mypackages/start/vim-easy-align"]
+	path = .vim/pack/mypackages/start/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align
+[submodule ".vim/pack/mypackages/start/nerdtree"]
+	path = .vim/pack/mypackages/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree
