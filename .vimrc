@@ -29,7 +29,7 @@ set laststatus=2
 
 " Themes and Styling
 " set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
-" set t_Co=256
+set t_Co=256
 " set background=dark
 
 
