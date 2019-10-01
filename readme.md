@@ -14,6 +14,11 @@ It would be awesome if I would just remember this stuff but for now this will ha
 .zshrc -> `ln -s /home/shannon/git/.cfg/.zshrc /home/shannon/.zshrc`  
 .tmux.conf -> `ln -s /home/shannon/git/.cfg/tmux.conf /home/shannon/tmux.conf`  
 
-4. Be smarter. 
-
 If you screw these up you can use the `unlink` command to remove the symlink. 
+
+4. Then you'll need to pull all the git submodules by running the following:  
+
+    `git submodule update --init`
+5. Be smarter. 
+
+
