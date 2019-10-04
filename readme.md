@@ -8,6 +8,8 @@ It would be awesome if I would just remember this stuff but for now this will ha
 2. Clone this repository in that directory: `git clone git://github.com/shiitake/.cfg ~/git/.cfg`
 3. Pull all the git submodules by running the following:    `git submodule update --init`
 4. Install the following packages: 
+	curl
+	zsh
 	i3
 	powerline
 	powerline fonts
@@ -24,6 +26,8 @@ It would be awesome if I would just remember this stuff but for now this will ha
 .tmux.conf -> `ln -s /home/shannon/git/.cfg/tmux.conf /home/shannon/tmux.conf`  
 
 If you screw these up you can use the `unlink` command to remove the symlink. 
+
+5. Set Zsh to default shell `chsh -s $(which zsh)` and install oh-my-zsh `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 
 ### Todo ###
 * Figure out how to incorporate your ST build
