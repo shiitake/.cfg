@@ -124,3 +124,6 @@ alias tmux='tmux -2'
 # some test stuff
 alias normal='printf "\033[38;2;40;40;40m\033[48;2;168;153;132m\033[1m NORMAL \033[m"'
 alias dotfiles='/usr/bin/git --git-dir=/home/shannon/.cfg/ --work-tree=/home/shannon'
+
+# battery stuff - this might only work with ubuntu
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "state|to\ full|percentage"'
