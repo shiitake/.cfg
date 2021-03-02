@@ -44,6 +44,7 @@ alias grep='grep --color=auto'
 alias wflist='iwlist wlp2s0 scan | grep -e "ESSID"'
 alias wifi='nmcli device wifi connect Computer\!\!1 password ilikeyourdog'
 alias hib='systemctl hibernate'
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "state|to\ full|percentage"'
 
 # Adds nvm plugin
 source ~/.zsh-nvm/zsh-nvm.plugin.zsh
