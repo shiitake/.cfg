@@ -17,7 +17,21 @@ bindkey -v
 # End of lines configured by zsh-newuser-install
 
 # Powerline stuff
-. /home/shannon/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+if [ -d /home/shannon/.local/lib/python2.7/site-packages/powerline ]; then 
+	powerline_location="/home/shannon/.local/lib/python2.7/site-packages/powerline"
+elif [ -d /usr/share/powerline ]; then
+	powerline_location="/usr/share/powerline"
+else
+	powerline_location=""
+fi
+
+#statements
+if [ ! -z $powerline_location ]; then
+  # powerline-daemon -q
+  # POWERLINE_BASH_CONTINUATION=1
+  # POWERLINE_BASH_SELECT=1
+  source $powerline_location/bindings/zsh/powerline.zsh
+fi
 
 # Alias stuff
 alias ls='ls --color=auto -oAF --no-group --group-directories-first'
