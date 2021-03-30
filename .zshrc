@@ -1,3 +1,9 @@
+# enable colors and set prompt
+
+autoload -U colors && colors
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' list-colors ''
@@ -47,4 +53,4 @@ alias hib='systemctl hibernate'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "state|to\ full|percentage"'
 
 # Adds nvm plugin
-source ~/.zsh-nvm/zsh-nvm.plugin.zsh
+[ -f "~/.zsh-nvm/zsh-nvm.plugin.zsh" ] && source ~/.zsh-nvm/zsh-nvm.plugin.zsh
