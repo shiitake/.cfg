@@ -10,14 +10,13 @@ It would be awesome if I would just remember this stuff but for now this will ha
 4. Install the following packages: 
 	curl
 	zsh
-	i3
 	powerline
 	powerline fonts
 	zsh
 	docker
 	firefox
 
-4. Create the following symlinks to the appropriate files/directories
+5. Create the following symlinks to the appropriate files/directories
 
 .vim ->  `ln -s /home/shannon/git/.cfg/.vim /home/shannon/.vim`  
 .vimrc -> `ln -s /home/shannon/git/.cfg/.vimrc /home/shannon/.vimrc`  
@@ -27,7 +26,24 @@ It would be awesome if I would just remember this stuff but for now this will ha
 
 If you screw these up you can use the `unlink` command to remove the symlink. 
 
-5. Set Zsh to default shell `chsh -s $(which zsh)` and install oh-my-zsh `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+6. Set Zsh to default shell `chsh -s $(which zsh)` 
+
+
+### ST and DWM ###
+
+Installing ST is pretty straightforward - just clone the git repository and install
+`git clone https://github.com/LukeSmithxyz/st` 
+
+#### Instructions for setting up dwm from lukesmith's fork 
+1. Install libxft-bgra on debian/ubuntu 
+  * Install missing dependancies: `apt install libx11-xcb-dev libxcb-res0-dev dh-autoreconf autotools-dev xutils-dev` 
+  * Clone repo from github:   `git clone https://github.com/uditkarode/libxft-bgra` 
+  * Follow build instructions from repo 
+
+2. Clone repo from github:   git clone https://github.com/LukeSmithxyz/dwm 
+3. Setup dwmblocks - tbd
+
+
 
 ### Todo ###
 * Figure out how to incorporate your ST build
