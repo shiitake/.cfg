@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+#profile file runs on login. environmental variables are set here
+
