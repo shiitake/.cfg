@@ -38,7 +38,7 @@ Installing ST is pretty straightforward - just clone the git repository and inst
 
 #### Instructions for setting up dwm from lukesmith's fork 
 1. Install libxft-bgra on debian/ubuntu 
-  * Install missing dependancies: `apt install libx11-xcb-dev libxcb-res0-dev dh-autoreconf autotools-dev xutils-dev` 
+  * Install missing dependancies: `apt install libx11-xcb-dev libxcb-res0-dev libxinerama-dev dh-autoreconf autotools-dev xutils-dev` 
   * Clone repo from github:   `git clone https://github.com/uditkarode/libxft-bgra` 
   * Follow build instructions from repo 
 
