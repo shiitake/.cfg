@@ -14,21 +14,27 @@ It would be awesome if I would just remember this stuff but for now this will ha
 	zsh
 	powerline
 	powerline fonts
-	zsh
+	dos2unix
 	docker
 	firefox
 
-5. Create the following symlinks to the appropriate files/directories
 
-.vim ->  `ln -s /home/shannon/git/.cfg/.vim /home/shannon/.vim`  
-.vimrc -> `ln -s /home/shannon/git/.cfg/.vimrc /home/shannon/.vimrc`  
-.bashrc -> `ln -s /home/shannon/git/.cfg/.bashrc /home/shannon/.bashrc`  
-.zshrc -> `ln -s /home/shannon/git/.cfg/.zshrc /home/shannon/.zshrc`  
-.tmux.conf -> `ln -s /home/shannon/git/.cfg/tmux.conf /home/shannon/tmux.conf`  
+5. Copy the .config and .local folders to your local directory
+  `cp -R /home/shannon/git/.cfg/.config /home/shannon`
+  `cp -R /home/shannon/git/.cfg/.local /home/shannon`
+
+6. Fix line-ending issues by running dos2unix on all the plaintext files
+  `find ./.config -maxdepth 2 -type f -exec dos2unix {} \;`
+  `find ./.local -maxdepth 2 -type f -exec dos2unix {} \;`
+
+7. Create the following symlinks to the appropriate files/directories
+
+  .zprofile -> `ln -s .config/shell/profile .zprofile`
+  .xprofile -> `ln -s .config/x11/xprofile .xprofile`
 
 If you screw these up you can use the `unlink` command to remove the symlink. 
 
-6. Set Zsh to default shell `chsh -s $(which zsh)` 
+8. Set Zsh to default shell `chsh -s $(which zsh)` 
 
 
 ### ST and DWM ###
