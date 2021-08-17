@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# This file runs when a DM logs you into a graphical session
+xrbd ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources &

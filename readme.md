@@ -38,10 +38,25 @@ Installing ST is pretty straightforward - just clone the git repository and inst
 
 #### Instructions for setting up dwm from lukesmith's fork 
 1. Install libxft-bgra on debian/ubuntu 
-  * Install missing dependancies: `apt install libx11-xcb-dev libxcb-res0-dev libxinerama-dev dh-autoreconf autotools-dev xutils-dev` 
-  * Clone repo from github:   `git clone https://github.com/uditkarode/libxft-bgra` 
-  * Follow build instructions from repo 
-
+  * ~~Install missing dependancies: `apt install libx11-xcb-dev libxcb-res0-dev dh-autoreconf autotools-dev xutils-dev` ~~
+  * ~~Clone repo from github:   `git clone https://github.com/uditkarode/libxft-bgra` ~~
+  * ~~Follow build instructions from repo ~~
+  * Add barrett.computer repository:
+    * add the following line to /etc/apt/sources.list
+      deb https://apt.barrett.computer/debian/ buster main
+    * make sure this repo takes priority by editing /etc/apt/preferences
+      ```
+      Package: *
+      Pin: origin apt.barrett.computer
+      Pin-Priority: 1001
+      ```
+    * import the gpg key
+      `wget -O - -q https://apt.barrett.computer/apt.barrett.computer.gpg.key | sudo apt-key add -`
+    * update the db:
+      `apt update`
+    * install the package:
+      `apt install libxft2`
+    * re-install ST 
 2. Clone repo from github:   git clone https://github.com/LukeSmithxyz/dwm 
 3. Setup dwmblocks - tbd
 
