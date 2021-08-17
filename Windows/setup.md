@@ -12,4 +12,9 @@ You'll probably need to download the fonts manually from Nerd Fonts. At some poi
 	c. `scoop install sudo`
 	d. `sudo scoop install FantasqueSansMono-NF`
 	e. `sudo scoop install Inconsolata-NF`
-4. Copy the powershell profile to ~/Documents/WindowsPowerShell/
+
+4. Install some of the powershell stuff
+	a. Oh-My-Posh:  `Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease`
+	b. Posh-git: `Install-Module posh-git -Scope CurrentUser`
+	b. Posh-SSH: `Install-Module -Name Posh-SSH`
+5. Copy the powershell profile to location of $profile (~\Documents\WindowsPowerShell)
