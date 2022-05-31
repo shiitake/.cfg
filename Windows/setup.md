@@ -2,6 +2,10 @@
 
 You'll probably need to download the fonts manually from Nerd Fonts. At some point I should just automate that
 
+### Installation
+
+For setup of a dev environment you can run `choco install dev.config -y` and it will install a lot of stuff that you'll want. Including Windows Terminal and PowerShell 7. 
+
 ### Setup
 
 1. Copy and pase the contents of settings.json into the WindowsTerminal settings
