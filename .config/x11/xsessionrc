@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Adds `~/.local/bin` to $PATH
+tmpbin=$(find ~/.local/bin -type d -printf %p:)
+export PATH="$PATH:${tmpbin%%:}"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
+export LESSHISTFILE="-"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+export MBSYNCRC="${XDG_CONFIG_HOME:-$HOME/.config}/mbsync/config"
+
+# this can probably be moved to the .zshrc
+export LESS=-R
+export LESS_TERMCAP_mb="$(printf '%b' '')"
+export LESS_TERMCAP_md="$(printf '%b' '')"
+export LESS_TERMCAP_me="$(printf '%b' '')"
+export LESS_TERMCAP_so="$(printf '%b' '')"
+export LESS_TERMCAP_se="$(printf '%b' '')"
+export LESS_TERMCAP_us="$(printf '%b' '')"
+export LESS_TERMCAP_ue="$(printf '%b' '')"
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"

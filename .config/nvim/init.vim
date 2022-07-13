@@ -6,6 +6,12 @@ set encoding=utf8
 " Disable file type for plugins
 filetype off
 
+call plug#begin()
+Plug 'scrooloose/nerdtree'
+Plug 'OmniSharp/omnisharp-vim'
+
+call plug#end()
+
 " Set filetype plugin back to on
 filetype plugin on
 
@@ -42,3 +48,5 @@ let g:spacegray_italicize_comments = 1
 " setup nerdtree stuff
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
