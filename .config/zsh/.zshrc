@@ -1,7 +1,12 @@
-# enable colors and set prompt
+# source profile
+[ -f ~/.profile ] && . ~/.profile
 
+
+# enable colors and set prompt
 autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
+
 
 # Load aliases and shortcuts
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
@@ -23,6 +28,7 @@ SAVEHIST=1000
 setopt appendhistory autocd
 bindkey -v
 # End of lines configured by zsh-newuser-install
+unsetopt PROMPT_SP
 
 # Powerline stuff
 if [ -d /home/shannon/.local/lib/python2.7/site-packages/powerline ]; then 
