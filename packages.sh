@@ -2,37 +2,111 @@
 
 set -e
 
-# functions
-is_installed() {
-	dpkg -s $1 &> /dev/null
-	if [ $? -eq 0 ]; then
-	    return 0
-	else
-	    return 1
-	fi
-}
-
 # setup debs to handle non-free stuff
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
-sudo sed -I -- 's/bullseye main/bullseye main contrib non-free/g' /etc/apt/sources.list \
-	&& sudo sed -I -- 's/bullseye-security main/bullseye-security main contrib non-free/g' /etc/apt/sources.list \
-	&& sudo sed -I -- 's/bullseye-updates main/bullseye-updates main contrib non-free/g' /etc/apt/sources.list 
+# it's possible to mess up your sources list if you run this more than once (e.g. if it fails)
+# if it fails you should restore from the backup before re-running
+if [ -f /etc/apt/sources.list.backup ]; then 
+	# restore from backup
+	cp /etc/apt/sources.list.backup /etc/apt/sources.list
+else
+	# make a backup
+	cp /etc/apt/sources.list /etc/apt/sources.list.backup
+fi
+sed -i 's/bullseye main/bullseye main contrib non-free/g' /etc/apt/sources.list \
+	&& sudo sed -i 's/bullseye-security main/bullseye-security main contrib non-free/g' /etc/apt/sources.list \
+	&& sudo sed -i 's/bullseye-updates main/bullseye-updates main contrib non-free/g' /etc/apt/sources.list 
 
-sudo apt update 
+apt update 
 
 
 # remove packages
+echo "### Removing packages ###"
 for x in aisleriot cheese empathy gnome-contacts gnome-mahjongg \
 	gnome-disk-utility gnome-terminal gnome-screenshot gnome-mines \
 	gnome-sudoku libreoffice-calc libreoffice-common libreoffice-draw \
 	libreoffice-impress libreoffice-math libreoffice-writer modemmanager \
-	thunderbird gdm3; do
-		if is_installed $x ; then 
-			echo "deleting $x"
-			sudo apt-get -qq purge $x;
-		fi
+	thunderbird gdm3; do		
+		echo "deleting $x"
+		sudo apt-get -qq purge $x;
 done
 
-exec apt-get -y autoremove
+sudo apt-get -qq autoremove
 
+# install the stuff
+echo "### Installing the things"
+apt-get --no-install-recommends install -y \
+aptitude \
+apt-file \
+curl \
+daemontools \
+dos2unix \
+fonts-powerline \
+fzf \
+git \
+htop \
+jq \
+make \
+moreutils \
+mosh \
+openssh-client \
+openssh-server \
+powerline \
+ripgrep \
+rsync \
+pv \
+tmux \
+tree \
+unattended-upgrades \
+neovim \
+zsh
+
+echo "### Installing libs that are required for st/dwm"
+apt-get --no-install-recommends install -y \
+libx11-xcb-dev \
+libxcb-res0-dev \
+dh-autoreconf \
+autotools-dev \
+xutils-dev \
+libfreetype-dev \
+libxft-dev \
+libharfbuzz-dev \
+libxinerama-dev \
+debconf-utils
+
+# set zsh as default
+chsh -s /bin/zsh
+
+# install XFT
+echo "installing XFT"
+git clone https://gitlab.freedesktop.org/xorg/lib/libxft.git
+cd libxft
+sh autogen.sh --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
+make install
+cd ..
+rm libxft
+
+# install st
+echo "installing ST"
+git clone https://github.com/LukeSmithxyz/st
+cd st
+make install
+cd ..
+rm st
+
+
+# install dwm
+echo "installing dwm"
+git clone https://github.com/LukeSmithxyz/dwm
+cd dwm
+make install
+cd ..
+rm dwm
+
+# install slim display manager
+echo "installing slim display manager"
+debconf-set-selections <<EOF
+slim  share/default-x-display-manager select slim
+EOF
+
+DEBIAN_FRONTEND=noninteractive apt-get -qq install slim
 
