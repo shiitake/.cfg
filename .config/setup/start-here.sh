@@ -9,7 +9,7 @@ home="/home/$name"
 repldir="$home/git"
 backup=$home/.config/config-backup
 
-sudo apt install -qq git
+sudo apt install -qq git curl
 
 [ ! -d "$repldir" ] && mkdir "$repldir"
 [ ! -d "$backup" ] && mkdir "$backup"
@@ -28,3 +28,9 @@ git clone --config status.showUntrackedFiles=no --bare https://github.com/shiita
 # move conflicting files
 config checkout linux 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} $backup/{}
 config checkout linux
+
+# install packages now
+sudo sh ./packages.sh
+
+# setup everything else
+sh ./setup.sh
