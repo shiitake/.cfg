@@ -20,11 +20,8 @@ for x in .bash_profile .bash_login .bash_logout .bashrc .profile .xprofile .xini
 	[ -f $x ] && mv $x "$backup/$x"
 done
 
-# maybe setup repo here
-
 # set zsh as default
-# this requires a password - still need to figure that out
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh) "$name" >/dev/null 2>&1
 
 # download joypixel font
 sudo wget -O /usr/share/fonts/truetype/JoyPixels.ttf https://cdn.joypixels.com/arch-linux/font/6.6.0/joypixels-android.ttf
