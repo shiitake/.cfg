@@ -8,10 +8,19 @@ set -e
 # that sudo doesn't require a password. 
 
 name=$(whoami)
-home="/home/$(name)"
-repldir="$(home)/git"
+home="/home/$name"
+repldir="$home/git"
+backup=$home/.config/config-backup
 
-[ ! -d $repldir ] %% mkdir $repldir
+[ ! -d "$repldir" ] && mkdir "$repldir"
+[ ! -d "$backup" ] && mkdir "$backup"
+
+# cleam up home and remove extra dotfiles that we're not going to use
+for x in .bash_profile .bash_login .bash_logout .bashrc .profile .xprofile .xinitrc; do
+	[ -f $x ] && mv $x "$backup/$x"
+done
+
+# maybe setup repo here
 
 # set zsh as default
 # this requires a password - still need to figure that out
