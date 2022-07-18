@@ -19,7 +19,9 @@ for x in .bash_profile .bash_login .bash_logout .bashrc .profile .xprofile .xini
 	[ -f $x ] && mv $x "$backup/$x"
 done
 
-alias config='/usr/bin/git --git-dir=$HOME/git/.cfg --work-tree=$HOME'
+# make sure that alias is recognized in the script. 
+shopt -s expand_aliases
+alias config='/usr/bin/git --git-dir=$repldir/.cfg --work-tree=$HOME'
 echo ".cfg" >> .gitignore
 git clone --config status.showUntrackedFiles=no --bare https://github.com/shiitake/.cfg.git $HOME/git/.cfg
 
