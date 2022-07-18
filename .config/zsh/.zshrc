@@ -7,7 +7,6 @@ autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 
-
 # Load aliases and shortcuts
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 
@@ -24,6 +23,7 @@ compinit
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.cache/zsh/histfile
 HISTSIZE=1000
+HISTFILESIZE=2000
 SAVEHIST=1000
 setopt appendhistory autocd
 bindkey -v

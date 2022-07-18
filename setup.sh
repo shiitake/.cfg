@@ -47,7 +47,9 @@ cd dwm
 sudo make install
 cd $repldir
 
-# install dwm status bar
+# install demu
+
+# install dwm blocks
 
 
 # install slim display manager
@@ -57,18 +59,3 @@ slim  shared/default-x-display-manager select slim
 EOF
 
 DEBIAN_FRONTEND=noninteractive sudo apt-get -qq install slim
-
-# setup bare repo for dotfile
-# should we do this first maybe?
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-# this will help avoid recurion problems
-echo ".cfg" >> .gitignore
-git clone --bare https://github.com/shiitake/.cfg.git $HOME/.cfg
-
-#move any conflicting files to a backup location (they can be deleted later)
-mkdir -p .config-backup && \
-config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-xargs -I{} mv {} .config-backup/{}
-
-config checkout
-config config --local status.showUntrackedFiles no
