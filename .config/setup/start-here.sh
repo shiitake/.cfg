@@ -30,7 +30,7 @@ config checkout linux 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {}
 config checkout linux
 
 # install packages now
-sudo sh ./packages.sh
+sudo sh $HOME/.config/setup/packages.sh
 
 # setup everything else
-sh ./setup.sh
+sh $HOME/.config/setup/setup.sh

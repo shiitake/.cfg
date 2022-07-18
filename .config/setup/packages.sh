@@ -54,7 +54,7 @@ powerline \
 ripgrep \
 rsync \
 pv \
-spellcheck \
+shellcheck \
 tmux \
 tree \
 unattended-upgrades \
