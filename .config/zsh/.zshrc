@@ -47,9 +47,6 @@ if [ ! -z $powerline_location ]; then
   # source $powerline_location/bindings/zsh/powerline.zsh
 fi
 
-# Alias stuff
-alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "state|to\ full|percentage"'
-
 # Adds nvm plugin
 # [ -f "~/.zsh-nvm/zsh-nvm.plugin.zsh" ] && source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 

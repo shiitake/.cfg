@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "Starting xsession: $(date)"
+
+autostart="compton ssh-agent"
+
+for program in $autostart; do
+	pidof -s "$program" || "$program" &
+done >/dev/null 2>&1
+
+exec dwm

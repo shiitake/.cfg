@@ -1,27 +1,9 @@
 #!/bin/sh
 
-# Adds `~/.local/bin` to $PATH
-tmpbin=$(find ~/.local/bin -type d -printf %p:)
-export PATH="$PATH:${tmpbin%%:}"
+# source profile - this should have most common environment variables
+[ -f ~/.profile ] && . ~/.profile
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
-export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
-export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
-export LESSHISTFILE="-"
-export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
-export MBSYNCRC="${XDG_CONFIG_HOME:-$HOME/.config}/mbsync/config"
-
-# this can probably be moved to the .zshrc
-export LESS=-R
-export LESS_TERMCAP_mb="$(printf '%b' '')"
-export LESS_TERMCAP_md="$(printf '%b' '')"
-export LESS_TERMCAP_me="$(printf '%b' '')"
-export LESS_TERMCAP_so="$(printf '%b' '')"
-export LESS_TERMCAP_se="$(printf '%b' '')"
-export LESS_TERMCAP_us="$(printf '%b' '')"
-export LESS_TERMCAP_ue="$(printf '%b' '')"
-export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+# variables that are specific to the xsession go here
+export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
+export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
