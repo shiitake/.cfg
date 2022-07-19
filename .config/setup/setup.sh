@@ -40,22 +40,32 @@ sudo rm -rf "$repldir/libxft"
 # install st
 echo "installing ST"
 cd $repldir
-git clone https://github.com/LukeSmithxyz/st
+git clone https://github.com/shiitake/st.git
 cd st
 sudo make install
 cd $repldir
 
-
 # install dwm
 echo "installing dwm"
-git clone https://github.com/LukeSmithxyz/dwm
+git clone https://github.com/shiitake/dwm.git
 cd dwm
 sudo make install
 cd $repldir
 
 # install demu
+echo "installing dmenu"
+git clone https://github.com/shiitake/dmenu.git
+cd dmenu
+sudo make install
+cd $repldir
 
 # install dwm blocks
+echo "dwm blocks"
+git clone https://github.com/shiitake/dwmblocks.git
+cd dwmblocks
+sudo make install
+cd $repldir
+
 
 
 # install slim display manager
@@ -65,3 +75,16 @@ slim  shared/default-x-display-manager select slim
 EOF
 
 DEBIAN_FRONTEND=noninteractive sudo apt-get -qq install slim
+
+sudo cp $home/.config/slim/slim.conf /etc/slim.conf
+sudo sp -r $home/.config/slim/themes/ /usr/share/slim/themes
+
+# copy xsession
+sudo cp $home/.config/x11/xsession.desktop /usr/share/xsessions/xsession.desktop
+
+# create symlinks to xsession stuff maybe? 
+ln -s $home/.config/shell/profile $home/.zprofile
+ln -s $home/.config/x11/xsession $home/.xsession
+ln -s $home/.config/x11/xsessionrc $home/.xsessionrc
+
+
