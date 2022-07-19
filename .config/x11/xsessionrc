@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # source profile - this should have most common environment variables
-[ -f ~/.profile ] && . ~/.profile
+[ -f ~/.zprofile ] && . ~/.zprofile
 
 # variables that are specific to the xsession go here
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.

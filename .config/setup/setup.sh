@@ -77,7 +77,7 @@ EOF
 DEBIAN_FRONTEND=noninteractive sudo apt-get -qq install slim
 
 sudo cp $home/.config/slim/slim.conf /etc/slim.conf
-sudo sp -r $home/.config/slim/themes/ /usr/share/slim/themes
+sudo cp -r $home/.config/slim/themes/ /usr/share/slim/themes
 
 # copy xsession
 sudo cp $home/.config/x11/xsession.desktop /usr/share/xsessions/xsession.desktop

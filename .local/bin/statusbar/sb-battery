@@ -16,6 +16,12 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
+# check for battery
+if [ ! -h /sys/class/power_supply/BAT?* ]; then
+	status="⚡"
+	capacity="N/A"
+	printf "%s%s%d%%" "$status" "$capacity"
+
 # Loop through all attached batteries and format the info
 for battery in /sys/class/power_supply/BAT?*; do
 	# If non-first battery, print a space separator.

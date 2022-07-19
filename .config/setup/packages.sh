@@ -48,6 +48,8 @@ jq \
 make \
 moreutils \
 mosh \
+mpd \
+mpc \
 openssh-client \
 openssh-server \
 powerline \
