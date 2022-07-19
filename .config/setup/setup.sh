@@ -89,7 +89,13 @@ ln -s $home/.config/x11/xsessionrc $home/.xsessionrc
 
 # install vim plug
 curl -fLo "$home/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # cleanup
+# Fix line-ending issues by running dos2unix on all the plaintext files
+find ./.config -maxdepth 2 -type f -exec dos2unix -f {} \;
+find ./.local -maxdepth 2 -type f -exec dos2unix -f {} \;
+
+# remove any left over bash stuff
+rm .bash*
 

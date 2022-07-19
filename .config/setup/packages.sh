@@ -25,7 +25,7 @@ for x in aisleriot cheese empathy gnome-contacts gnome-mahjongg \
 	gnome-disk-utility gnome-terminal gnome-screenshot gnome-mines \
 	gnome-sudoku libreoffice-calc libreoffice-common libreoffice-draw \
 	libreoffice-impress libreoffice-math libreoffice-writer modemmanager \
-	thunderbird gdm3; do		
+	thunderbird; do		
 		echo "deleting $x"
 		sudo apt-get -qq purge $x;
 done
@@ -40,7 +40,11 @@ apt-file \
 curl \
 daemontools \
 dos2unix \
+fonts-inconsolata \
+fonts-linuxlibertine \
+fonts-noto \
 fonts-powerline \
+fonts-symbola \
 fzf \
 git \
 htop \
