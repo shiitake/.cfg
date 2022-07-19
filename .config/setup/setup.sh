@@ -87,4 +87,9 @@ ln -s $home/.config/shell/profile $home/.zprofile
 ln -s $home/.config/x11/xsession $home/.xsession
 ln -s $home/.config/x11/xsessionrc $home/.xsessionrc
 
+# install vim plug
+curl -fLo "$home/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# cleanup
 
