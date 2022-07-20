@@ -16,8 +16,11 @@ sed -i 's/bullseye main/bullseye main contrib non-free/g' /etc/apt/sources.list 
 	&& sudo sed -i 's/bullseye-security main/bullseye-security main contrib non-free/g' /etc/apt/sources.list \
 	&& sudo sed -i 's/bullseye-updates main/bullseye-updates main contrib non-free/g' /etc/apt/sources.list 
 
-apt-get update -qq
+# Add brave key
+curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"| tee /etc/apt/sources.list.d/brave-browser-release.list
 
+apt-get update -qq
 
 # remove packages
 echo "### Removing packages ###"
@@ -25,7 +28,7 @@ for x in aisleriot cheese empathy gnome-contacts gnome-mahjongg \
 	gnome-disk-utility gnome-terminal gnome-screenshot gnome-mines \
 	gnome-sudoku libreoffice-calc libreoffice-common libreoffice-draw \
 	libreoffice-impress libreoffice-math libreoffice-writer modemmanager \
-	thunderbird gdm3; do		
+	thunderbird gdm3 libxft-dev libxft2; do		
 		echo "deleting $x"
 		apt-get purge -qq $x;
 done
@@ -38,6 +41,7 @@ apt-get install -y --no-install-recommends \
 aptitude \
 apt-file \
 apt-transport-https \
+brave-browser \
 curl \
 daemontools \
 dos2unix \
@@ -81,7 +85,6 @@ libfreetype-dev \
 libharfbuzz-dev \
 libx11-xcb-dev \
 libxcb-res0-dev \
-libxft-dev \
 libxinerama-dev \
 phonon-backend-gstreamer-common \
 qml-module-qtquick-controls \
