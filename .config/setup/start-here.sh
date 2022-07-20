@@ -9,7 +9,7 @@ home="/home/$name"
 repldir="$home/git"
 backup=$home/.config/config-backup
 
-sudo apt install -qq git curl
+sudo apt-get install -qq git curl
 
 [ ! -d "$repldir" ] && mkdir "$repldir"
 [ ! -d "$backup" ] && mkdir "$backup"

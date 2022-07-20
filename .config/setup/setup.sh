@@ -72,7 +72,7 @@ sudo debconf-set-selections <<EOF
 sddm  shared/default-x-display-manager select sddm
 EOF
 
-DEBIAN_FRONTEND=noninteractive sudo apt-get -qq install sddm
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -qq sddm
 
 sudo mkdir /etc/sddm.conf.d
 sudo cp $home/.config/sddm/sddm.conf /etc/sddm.conf.d/sddm.conf
@@ -95,6 +95,17 @@ ln -s $home/.config/x11/xsessionrc $home/.xsessionrc
 # install vim plug
 curl -fLo "$home/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# install brave
+echo "installing brave"
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
+sudo apt-get update -qq
+
+sudo apt-get install -qq brave-browser
+
 
 # cleanup
 # Fix line-ending issues by running dos2unix on all the plaintext files

@@ -3,9 +3,9 @@
 echo "Starting xsession: $(date)"
 
 # user the Xresources file
-xrdb ${}/x11/xresources & xrdbpid=$1
+xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$1
 
-autostart="compton ssh-agent"
+autostart="compton ssh-agent mpd"
 
 for program in $autostart; do
 	pidof -s "$program" || "$program" &

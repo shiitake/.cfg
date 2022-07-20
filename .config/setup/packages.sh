@@ -16,7 +16,7 @@ sed -i 's/bullseye main/bullseye main contrib non-free/g' /etc/apt/sources.list 
 	&& sudo sed -i 's/bullseye-security main/bullseye-security main contrib non-free/g' /etc/apt/sources.list \
 	&& sudo sed -i 's/bullseye-updates main/bullseye-updates main contrib non-free/g' /etc/apt/sources.list 
 
-sudo apt update -qq
+apt-get update -qq
 
 
 # remove packages
@@ -27,16 +27,17 @@ for x in aisleriot cheese empathy gnome-contacts gnome-mahjongg \
 	libreoffice-impress libreoffice-math libreoffice-writer modemmanager \
 	thunderbird gdm3; do		
 		echo "deleting $x"
-		sudo apt-get -qq purge $x;
+		apt-get purge -qq $x;
 done
 
-sudo apt-get -qq autoremove
+apt-get autoremove -qq
 
 # install the stuff
 echo "### Installing the things"
-apt-get --no-install-recommends install -y \
+apt-get install -y --no-install-recommends \
 aptitude \
 apt-file \
+apt-transport-https \
 curl \
 daemontools \
 dos2unix \
@@ -61,6 +62,7 @@ ripgrep \
 rsync \
 pv \
 shellcheck \
+taskspooler \
 tmux \
 tree \
 unattended-upgrades \
@@ -68,8 +70,9 @@ neovim \
 zsh
 
 echo "### Installing libs that are required for st/dwm"
-apt-get --no-install-recommends install -y \
+apt-get install -y --no-install-recommends \
 autotools-dev \
+compton \
 debconf-utils \
 dh-autoreconf \
 gstreamer1.0-libav \
