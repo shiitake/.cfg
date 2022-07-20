@@ -98,9 +98,10 @@ curl -fLo "$home/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
 
 # cleanup
 # Fix line-ending issues by running dos2unix on all the plaintext files
-find $home/.config -maxdepth 2 -type f -exec dos2unix -f {} \;
-find $home/.local -maxdepth 2 -type f -exec dos2unix -f {} \;
+# excluding things in the pulse directory and image files
+find $home/.config -maxdepth 2 -type f \(! -path "*pulse*" \) \( ! -iname "*.png" \) -exec dos2unix -f {} \;
+find $home/.local -maxdepth 2 -type f \(! -path "*pulse*" \) \( ! -iname "*.png" \)  -exec dos2unix -f {} \;
 
 # remove any left over bash stuff
-rm $home/.bash*
+rm -f $home/.bash*
 
