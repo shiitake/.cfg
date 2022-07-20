@@ -69,13 +69,22 @@ zsh
 
 echo "### Installing libs that are required for st/dwm"
 apt-get --no-install-recommends install -y \
+autotools-dev \
+debconf-utils \
+dh-autoreconf \
+gstreamer1.0-libav \
+gstreamer1.0-plugins-good \
+libfreetype-dev \
+libharfbuzz-dev \
 libx11-xcb-dev \
 libxcb-res0-dev \
-dh-autoreconf \
-autotools-dev \
-xutils-dev \
-libfreetype-dev \
 libxft-dev \
-libharfbuzz-dev \
 libxinerama-dev \
-debconf-utils
+phonon-backend-gstreamer-common \
+qml-module-qtquick-controls \
+qml-module-qtgraphicaleffects \
+qml-module-qtmultimedia \
+qtmultimedia5-dev \
+xutils-dev
+
+

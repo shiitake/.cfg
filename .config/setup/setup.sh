@@ -66,18 +66,22 @@ cd dwmblocks
 sudo make install
 cd $repldir
 
-
-
-# install slim display manager
+# install SDDM display manager
 echo "installing slim display manager"
 sudo debconf-set-selections <<EOF
-slim  shared/default-x-display-manager select slim
+sddm  shared/default-x-display-manager select sddm
 EOF
 
-DEBIAN_FRONTEND=noninteractive sudo apt-get -qq install slim
+DEBIAN_FRONTEND=noninteractive sudo apt-get -qq install sddm
 
-sudo cp $home/.config/slim/slim.conf /etc/slim.conf
-sudo cp -r $home/.config/slim/themes/ /usr/share/slim/themes
+sudo cp $home/.config/sddm/sddm.conf /etc/sddm.conf.d/sddm.conf
+
+# install sddm theme
+echo "installing sddm theme"
+cd $repldir
+git clone https://github.com/3ximus/aerial-sddm-theme.git
+sudo mv aerial-sddm-theme /usr/share/sddm/themes
+
 
 # copy xsession
 sudo cp $home/.config/x11/xsession.desktop /usr/share/xsessions/xsession.desktop
@@ -93,9 +97,9 @@ curl -fLo "$home/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
 
 # cleanup
 # Fix line-ending issues by running dos2unix on all the plaintext files
-find ./.config -maxdepth 2 -type f -exec dos2unix -f {} \;
-find ./.local -maxdepth 2 -type f -exec dos2unix -f {} \;
+find $home/.config -maxdepth 2 -type f -exec dos2unix -f {} \;
+find $home/.local -maxdepth 2 -type f -exec dos2unix -f {} \;
 
 # remove any left over bash stuff
-rm .bash*
+rm $home/.bash*
 
