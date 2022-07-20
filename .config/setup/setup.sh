@@ -70,10 +70,12 @@ cd $repldir
 echo "installing slim display manager"
 sudo debconf-set-selections <<EOF
 sddm  shared/default-x-display-manager select sddm
+gdm3  shared/default-x-display-manager select sddm
 EOF
 
 DEBIAN_FRONTEND=noninteractive sudo apt-get -qq install sddm
 
+sudo mkdir /etc/sddm.config.d
 sudo cp $home/.config/sddm/sddm.conf /etc/sddm.conf.d/sddm.conf
 
 # install sddm theme
