@@ -16,7 +16,7 @@ sed -i 's/bullseye main/bullseye main contrib non-free/g' /etc/apt/sources.list 
 	&& sudo sed -i 's/bullseye-security main/bullseye-security main contrib non-free/g' /etc/apt/sources.list \
 	&& sudo sed -i 's/bullseye-updates main/bullseye-updates main contrib non-free/g' /etc/apt/sources.list 
 
-apt update 
+sudo apt update -qq
 
 
 # remove packages
@@ -25,7 +25,7 @@ for x in aisleriot cheese empathy gnome-contacts gnome-mahjongg \
 	gnome-disk-utility gnome-terminal gnome-screenshot gnome-mines \
 	gnome-sudoku libreoffice-calc libreoffice-common libreoffice-draw \
 	libreoffice-impress libreoffice-math libreoffice-writer modemmanager \
-	thunderbird; do		
+	thunderbird gdm3; do		
 		echo "deleting $x"
 		sudo apt-get -qq purge $x;
 done
