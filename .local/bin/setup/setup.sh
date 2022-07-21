@@ -89,6 +89,7 @@ sudo mv aerial-sddm-theme /usr/share/sddm/themes
 
 
 # copy xsession
+[ ! -d /usr/share/xsessions ] && mkdir /usr/share/xsessions
 sudo cp $home/.config/x11/xsession.desktop /usr/share/xsessions/xsession.desktop
 
 # create symlinks to xsession stuff maybe? 

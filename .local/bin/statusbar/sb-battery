@@ -17,10 +17,12 @@ case $BLOCK_BUTTON in
 esac
 
 # check for battery
-if [ ! -h /sys/class/power_supply/BAT?* ]; then
-	status="⚡"
-	capacity="N/A"
-	printf "%s%s%d%%" "$status" "$capacity"
+mybattery=$(upower -e | grep "BAT")
+if [ -z $mybattery ]; then
+	status="🔌"
+	capacity="100"
+	printf "%s%d%%\n" "$status" "$capacity" && exit 0
+fi
 
 # Loop through all attached batteries and format the info
 for battery in /sys/class/power_supply/BAT?*; do

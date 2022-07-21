@@ -81,6 +81,8 @@ moreutils \
 mosh \
 mpd \
 mpc \
+neovim \
+net-tools \
 openssh-client \
 openssh-server \
 powerline \
@@ -92,7 +94,7 @@ task-spooler \
 tmux \
 tree \
 unattended-upgrades \
-neovim \
+wireless-tools \
 zsh
 
 
