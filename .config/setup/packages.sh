@@ -28,14 +28,40 @@ for x in aisleriot cheese empathy gnome-contacts gnome-mahjongg \
 	gnome-disk-utility gnome-terminal gnome-screenshot gnome-mines \
 	gnome-sudoku libreoffice-calc libreoffice-common libreoffice-draw \
 	libreoffice-impress libreoffice-math libreoffice-writer modemmanager \
-	thunderbird gdm3; do		
+	thunderbird gdm3 libxft-dev libxft2; do		
 		echo "deleting $x"
 		apt-get purge -qq $x;
 done
 
-apt-get autoremove -qq
+echo "### Installing libs that are required for st/dwm, etc"
+apt-get install -y --no-install-recommends \
+autotools-dev \
+compton \
+debconf-utils \
+dh-autoreconf \
+fonts-inconsolata \
+fonts-linuxlibertine \
+fonts-noto \
+fonts-powerline \
+fonts-symbola \
+gstreamer1.0-libav \
+gstreamer1.0-plugins-good \
+libfreetype-dev \
+libfontconfig1-dev \
+libharfbuzz-dev \
+libx11-xcb-dev \
+libxcb-res0-dev \
+libxinerama-dev \
+libxrender-dev \
+phonon-backend-gstreamer-common \
+qml-module-qtquick-controls \
+qml-module-qtgraphicaleffects \
+qml-module-qtmultimedia \
+qtmultimedia5-dev \
+xutils-dev
 
-# install the stuff
+
+# install the apps you know and love
 echo "### Installing the things"
 apt-get install -y --no-install-recommends \
 aptitude \
@@ -45,14 +71,10 @@ brave-browser \
 curl \
 daemontools \
 dos2unix \
-fonts-inconsolata \
-fonts-linuxlibertine \
-fonts-noto \
-fonts-powerline \
-fonts-symbola \
 fzf \
 git \
 htop \
+iw \
 jq \
 make \
 moreutils \
@@ -73,24 +95,6 @@ unattended-upgrades \
 neovim \
 zsh
 
-echo "### Installing libs that are required for st/dwm"
-apt-get install -y --no-install-recommends \
-autotools-dev \
-compton \
-debconf-utils \
-dh-autoreconf \
-gstreamer1.0-libav \
-gstreamer1.0-plugins-good \
-libfreetype-dev \
-libharfbuzz-dev \
-libx11-xcb-dev \
-libxcb-res0-dev \
-libxinerama-dev \
-phonon-backend-gstreamer-common \
-qml-module-qtquick-controls \
-qml-module-qtgraphicaleffects \
-qml-module-qtmultimedia \
-qtmultimedia5-dev \
-xutils-dev
 
-
+# only do this after we've installed everything
+apt-get autoremove -qq

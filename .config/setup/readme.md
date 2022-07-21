@@ -10,7 +10,7 @@ It would be awesome if I would just remember this stuff but for now this will ha
 2. Login as the user you created when installing the os
 3. Change to root: `su -`
 4. Add yourself to sudo and exit: `echo "username ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/username && exit`
-4. Install git and curl: `sudo apt install -y git curl`
+4. Install git ,curl and sudo: `sudo apt install -y git curl sudo`
 5. Run the start-here script: `curl -Lks https://raw.githubusercontent.com/shiitake/.cfg/linux/.config/setup/start-here.sh | /bin/bash`
 6. Wait for everythign to finish.
 7. Once it has completed reboot and login: `sudo shutdown -r now`
