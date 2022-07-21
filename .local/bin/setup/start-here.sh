@@ -26,7 +26,7 @@ echo ".cfg" >> .gitignore
 git clone --config status.showUntrackedFiles=no --bare https://github.com/shiitake/.cfg.git $HOME/git/.cfg
 
 # move conflicting files
-config checkout linux 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} $backup/{}
+config checkout linux 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv -f {} $backup/{}
 config checkout linux
 
 # install packages now
