@@ -40,7 +40,7 @@ set t_Co=256
 
 
 " let base16colorspace=256
-colorscheme morning
+colorscheme desert
 let g:spacegray_use_italics = 1
 let g:spacegray_underline_search = 1
 let g:spacegray_italicize_comments = 1
