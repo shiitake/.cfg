@@ -28,6 +28,8 @@ sudo wget -O /usr/share/fonts/truetype/JoyPixels.ttf https://cdn.joypixels.com/a
 fc-cache -f -v
 
 # install XFT manually - this fixed the emoji problem. hopefully it will be packaged soon.
+sudo apt-get remove -qq libxft-dev libxft2
+
 echo "installing XFT"
 cd $repldir
 git clone https://gitlab.freedesktop.org/xorg/lib/libxft.git

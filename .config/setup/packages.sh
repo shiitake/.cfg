@@ -28,7 +28,7 @@ for x in aisleriot cheese empathy gnome-contacts gnome-mahjongg \
 	gnome-disk-utility gnome-terminal gnome-screenshot gnome-mines \
 	gnome-sudoku libreoffice-calc libreoffice-common libreoffice-draw \
 	libreoffice-impress libreoffice-math libreoffice-writer modemmanager \
-	thunderbird gdm3 libxft-dev libxft2; do		
+	thunderbird gdm3; do		
 		echo "deleting $x"
 		apt-get purge -qq $x;
 done
