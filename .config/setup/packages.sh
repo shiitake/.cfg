@@ -66,7 +66,7 @@ ripgrep \
 rsync \
 pv \
 shellcheck \
-taskspooler \
+task-spooler \
 tmux \
 tree \
 unattended-upgrades \
