@@ -30,10 +30,10 @@ config checkout linux 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv -f
 config checkout linux
 
 # install packages now
-sudo sh $HOME/.config/setup/packages.sh
+sudo sh $HOME/.local/bin/setup/packages.sh
 
 # setup everything else
-sh $HOME/.config/setup/setup.sh
+sh $HOME/.local/bin/setup/setup.sh
 
 # update permissions to something more sensible
 [ -f "/etc/sudoers.d/$name" ] && mv "/etc/sudoers.d/$name" /etc/sudoers.d/tmp
