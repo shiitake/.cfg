@@ -20,6 +20,12 @@ sed -i 's/bullseye main/bullseye main contrib non-free/g' /etc/apt/sources.list 
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"| tee /etc/apt/sources.list.d/brave-browser-release.list
 
+# add signal key
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
+cat signal-desktop-keyring.gpg | sudo tee -a /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | \
+  sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+
 apt-get update -qq
 
 # remove packages
@@ -49,6 +55,7 @@ gstreamer1.0-plugins-good \
 libfreetype-dev \
 libfontconfig1-dev \
 libharfbuzz-dev \
+libpulse-dev \
 libx11-xcb-dev \
 libxcb-res0-dev \
 libxinerama-dev \
@@ -90,6 +97,7 @@ ripgrep \
 rsync \
 pv \
 shellcheck \
+signal-desktop \
 task-spooler \
 tmux \
 tree \
