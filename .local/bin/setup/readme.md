@@ -13,19 +13,25 @@ It would be awesome if I would just remember this stuff but for now this will ha
 4. Install git ,curl and sudo: `sudo apt install -y git curl sudo`
 5. Run the start-here script: `curl -Lks https://raw.githubusercontent.com/shiitake/.cfg/linux/.local/bin/setup/start-here.sh | /bin/bash`
 6. Wait for everythign to finish.
-7. Once it has completed reboot and login: `sudo shutdown -r now`
+7. Once it has completed reboot and login: `sudo reboot`
 
 ### Notes ###
-If you notice errors on your dot files that mention invalide characters it is probably an encoding problem with line endings. You may have to dos2unix on the file. 
+If you notice errors on your dot files that mention invalid characters it is probably an encoding problem with line endings. You may have to dos2unix on the file. 
 
 Fix line-ending issues by running dos2unix on all the plaintext files
   `find ./.config -maxdepth 2 -type f -exec dos2unix {} \;`
   `find ./.local -maxdepth 2 -type f -exec dos2unix {} \;`
 
+
+If there are tablet issues you might need to disable the touchscreen by installing xinput.
+
+View devices:  `xinput`  
+Disable device:  `xinput disable <device id>` 
+
 ### todo ###
 
 1. Automate git ssh credentials
-2. Sort out the issues with dwmblocks
-3. Fix the slim display manager issues
+2. Add background automatically
+
 
 
