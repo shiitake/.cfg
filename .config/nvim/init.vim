@@ -9,6 +9,9 @@ filetype off
 call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'junegunn/fzf'
+Plug 'dense-analysis/ale'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
@@ -49,4 +52,6 @@ let g:spacegray_italicize_comments = 1
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" reload dwmblocks if you change the config
+autocmd BufWritePost ~/git/dwmblocks/config.h !cd ~/git/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid dwmblocks & }
 
