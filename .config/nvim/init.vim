@@ -9,6 +9,9 @@ filetype off
 call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'junegunn/fzf'
+Plug 'dense-analysis/ale'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 

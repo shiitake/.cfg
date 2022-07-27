@@ -93,6 +93,7 @@ net-tools \
 openssh-client \
 openssh-server \
 powerline \
+pulsemixer \
 ripgrep \
 rsync \
 pv \
