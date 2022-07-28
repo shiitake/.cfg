@@ -2,6 +2,9 @@
 
 set -e
 
+# get distro codename
+codename=$(grep "CODENAME" /etc/os-release | cut -d '=' -f 2)
+
 # setup debs to handle non-free stuff
 # it's possible to mess up your sources list if you run this more than once (e.g. if it fails)
 # if it fails you should restore from the backup before re-running
@@ -12,9 +15,9 @@ else
 	# make a backup
 	cp /etc/apt/sources.list /etc/apt/sources.list.backup
 fi
-sed -i 's/bullseye main/bullseye main contrib non-free/g' /etc/apt/sources.list \
-	&& sudo sed -i 's/bullseye-security main/bullseye-security main contrib non-free/g' /etc/apt/sources.list \
-	&& sudo sed -i 's/bullseye-updates main/bullseye-updates main contrib non-free/g' /etc/apt/sources.list 
+sed -i "s|${codename} main|${codename} main contrib non-free|g" /etc/apt/sources.list \
+	&& sudo sed -i "s|${codename}-security main|${codename}-security main contrib non-free|g" /etc/apt/sources.list \
+	&& sudo sed -i "s|${codename}-updates main|${codename}-updates main contrib non-free|g" /etc/apt/sources.list 
 
 # Add brave key
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -25,6 +28,7 @@ wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signa
 cat signal-desktop-keyring.gpg | sudo tee -a /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | \
   sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+rm signal-desktop-keyring.gpg
 
 apt-get update -qq
 
@@ -52,7 +56,6 @@ fonts-powerline \
 fonts-symbola \
 gstreamer1.0-libav \
 gstreamer1.0-plugins-good \
-libfreetype-dev \
 libfontconfig1-dev \
 libharfbuzz-dev \
 libpulse-dev \
@@ -66,6 +69,10 @@ qml-module-qtgraphicaleffects \
 qml-module-qtmultimedia \
 qtmultimedia5-dev \
 xutils-dev
+
+#installing a few libs that are different between buster and bullseye
+[ "$codename" = "buster" ] && apt-get install -y --no-install-recommends libfreetype6-dev
+[ "$codename" = "bullseye" ] && apt-get install -y --no-install-recommends libfreetype-dev
 
 
 # install the apps you know and love
