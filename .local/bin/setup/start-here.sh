@@ -23,7 +23,7 @@ done
 shopt -s expand_aliases
 alias config='/usr/bin/git --git-dir=$repldir/.cfg --work-tree=$HOME'
 echo ".cfg" >> .gitignore
-git clone --config status.showUntrackedFiles=no --bare https://github.com/shiitake/.cfg.git $HOME/git/.cfg
+git clone -b linux --config status.showUntrackedFiles=no --bare https://github.com/shiitake/.cfg.git $HOME/git/.cfg
 
 # move conflicting files
 config checkout linux 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv -f {} $backup/{}
