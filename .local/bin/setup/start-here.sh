@@ -3,13 +3,17 @@
 set -e
 
 ##start here
+# check if running the right os/disto
+# this has only been tested on debian running bullseye or buster
+codename=$(grep "CODENAME" /etc/os-release | cut -d '=' -f 2)
+[ ! "$codename" = "buster" ] && [ ! "$codename" = "bullseye" ] && echo "This script only works on Debian Buster or Bullseye. You're running $codename" && exit 1
 
 name=$(whoami)
 home="/home/$name"
 repldir="$home/git"
 backup=$home/.config/config-backup
 
-sudo apt-get install -qq git curl
+sudo apt-get install -qq git curl sudo
 
 [ ! -d "$repldir" ] && mkdir "$repldir"
 [ ! -d "$backup" ] && mkdir "$backup"
