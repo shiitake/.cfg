@@ -1,0 +1,41 @@
+#!/bin/sh
+
+theme_dir="$HOME/.config/theme"
+
+cancel="x cancel"
+theme1="base16"
+theme2="brogrammer"
+theme3="dracula"
+theme4="gruvbox"
+theme5="gruvbox-light"
+theme6="solarized"
+theme7="xterm"
+option="$cancel\n$theme1\n$theme2\n$theme3\n$theme4\n$theme5\n$theme6\n$theme7"
+
+change_theme()
+{
+	cp ${theme_dir}/$1 ${theme_dir}/default
+
+	xrdb -merge -I$HOME ~/.config/x11/xresources
+
+	echo "press super+F5 to refresh color"
+}
+
+select="$(echo "$option" | dmenu -l 9 -p "Choose a theme: " )"
+
+case $select in
+	$theme1)
+		change_theme base16 ;;
+	$theme2)
+		change_theme brogrammer ;;
+	$theme3)
+		change_theme dracula ;;
+	$theme4)
+		change_theme gruvbox ;;
+	$theme5)
+		change_theme gruvbox-light ;;
+	$theme6)
+		change_theme solarized ;;
+	$theme7)
+		change_theme xterm ;;
+esac

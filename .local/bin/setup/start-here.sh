@@ -41,5 +41,5 @@ sh $HOME/.local/bin/setup/setup.sh
 
 # update permissions to something more sensible
 [ -f "/etc/sudoers.d/$name" ] && sudo mv "/etc/sudoers.d/$name" /etc/sudoers.d/tmp
-echo "$name ALL=(ALL) NOPASSWD: /usr/sbin/shutdown,/usr/sbin/reboot,/usr/sbin/halt, /usr/bin/systemctl suspend,/usr/bin/mount,/usr/bin/mount,/usr/bin/apt update, /usr/bin/apt-get update, /usr/bin/apt install -y,/usr/bin/apt-get install -y,/usr/bin/apt search,/usr/bin/apt-get search,/usr/sbin/iwlist,/usr/sbin/iw, /usr/sbin/ifconfig" | sudo tee "/etc/sudoers.d/$name"
+echo "$name ALL=(ALL:ALL) ALL, NOPASSWD:/usr/sbin/shutdown,/usr/sbin/reboot,/usr/sbin/halt, /usr/bin/systemctl suspend,/usr/bin/mount,/usr/bin/mount,/usr/bin/apt update, /usr/bin/apt-get update, /usr/bin/apt install -y,/usr/bin/apt-get install -y,/usr/bin/apt search,/usr/bin/apt-get search,/usr/sbin/iwlist,/usr/sbin/iw, /usr/sbin/ifconfig" | sudo tee "/etc/sudoers.d/$name"
 sudo rm -f /etc/sudoers.d/tmp
