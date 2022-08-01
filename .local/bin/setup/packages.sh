@@ -38,7 +38,7 @@ for x in aisleriot cheese empathy gnome-contacts gnome-mahjongg \
 	gnome-disk-utility gnome-terminal gnome-screenshot gnome-mines \
 	gnome-sudoku libreoffice-calc libreoffice-common libreoffice-draw \
 	libreoffice-impress libreoffice-math libreoffice-writer modemmanager \
-	thunderbird gdm3 libxft-dev libxft2; do		
+	thunderbird gdm3 libxft-dev libxft2 xserver-xorg-video-intel; do		
 		echo "deleting $x"
 		apt-get purge -qq $x;
 done
@@ -56,6 +56,7 @@ fonts-powerline \
 fonts-symbola \
 gstreamer1.0-libav \
 gstreamer1.0-plugins-good \
+libd3dadapter9-mesa \
 libfontconfig1-dev \
 libharfbuzz-dev \
 libpulse-dev \
@@ -63,11 +64,13 @@ libx11-xcb-dev \
 libxcb-res0-dev \
 libxinerama-dev \
 libxrender-dev \
+mesa-utils \
 phonon-backend-gstreamer-common \
 qml-module-qtquick-controls \
 qml-module-qtgraphicaleffects \
 qml-module-qtmultimedia \
 qtmultimedia5-dev \
+suckless-tools \
 xutils-dev
 
 #installing a few libs that are different between buster and bullseye
@@ -85,6 +88,7 @@ brave-browser \
 curl \
 daemontools \
 dos2unix \
+feh \
 fzf \
 git \
 htop \
@@ -101,6 +105,7 @@ openssh-client \
 openssh-server \
 powerline \
 pulsemixer \
+ranger \
 ripgrep \
 rsync \
 pv \
@@ -111,6 +116,7 @@ tmux \
 tree \
 unattended-upgrades \
 wireless-tools \
+xdotool \
 zsh
 
 

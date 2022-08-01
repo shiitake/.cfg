@@ -7,3 +7,5 @@
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+# specific to the opengl drivers - only do this on X220 tablets
+export MESA_GL_VERSION_OVERRIDE=3.3
