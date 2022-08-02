@@ -35,6 +35,9 @@ sudo make install
 cd $repldir
 sudo rm -rf "$repldir/libxft"
 
+# install suckless-tools after XFT because it reinstalls libxft2
+sudo apt-get install -qq suckless-tools
+
 # install st
 echo "installing ST"
 cd $repldir
@@ -80,6 +83,7 @@ echo "installing sddm theme"
 cd $repldir
 git clone https://github.com/3ximus/aerial-sddm-theme.git
 sudo mv aerial-sddm-theme /usr/share/sddm/themes
+
 
 
 # copy xsession

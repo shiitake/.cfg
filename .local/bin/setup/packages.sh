@@ -70,7 +70,6 @@ qml-module-qtquick-controls \
 qml-module-qtgraphicaleffects \
 qml-module-qtmultimedia \
 qtmultimedia5-dev \
-suckless-tools \
 xdotool \
 xutils-dev
 
