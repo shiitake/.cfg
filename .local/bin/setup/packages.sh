@@ -71,6 +71,7 @@ qml-module-qtgraphicaleffects \
 qml-module-qtmultimedia \
 qtmultimedia5-dev \
 suckless-tools \
+xdotool \
 xutils-dev
 
 #installing a few libs that are different between buster and bullseye
@@ -116,7 +117,6 @@ tmux \
 tree \
 unattended-upgrades \
 wireless-tools \
-xdotool \
 zsh
 
 
