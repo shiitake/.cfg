@@ -10,15 +10,9 @@ set -e
 name=$(whoami)
 home="/home/$name"
 repldir="$home/git"
-backup=$home/.config/config-backup
 
-[ ! -d "$repldir" ] && mkdir "$repldir"
-[ ! -d "$backup" ] && mkdir "$backup"
+[ ! -d "$repldir" ] && mkdir -p "$repldir"
 
-# cleam up home and remove extra dotfiles that we're not going to use
-for x in .bash_profile .bash_login .bash_logout .bashrc .profile .xprofile .xinitrc; do
-	[ -f $x ] && mv $x "$backup/$x"
-done
 
 # set zsh as default
 sudo chsh -s $(which zsh) "$name" >/dev/null 2>&1

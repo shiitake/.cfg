@@ -15,8 +15,8 @@ backup=$home/.config/config-backup
 
 sudo apt-get install -qq git curl sudo
 
-[ ! -d "$repldir" ] && mkdir "$repldir"
-[ ! -d "$backup" ] && mkdir "$backup"
+[ ! -d "$repldir" ] && mkdir -p "$repldir"
+[ ! -d "$backup" ] && mkdir -p"$backup"
 
 # cleam up home and remove extra dotfiles that we're not going to use
 for x in .bash_profile .bash_login .bash_logout .bashrc .profile .xprofile .xinitrc; do
