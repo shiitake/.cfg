@@ -31,10 +31,10 @@ case $select in
         feh --bg-fill $HOME/.config/wallpaper/base16.png
         change_theme base16 ;;
     $theme2) 
-        feh --bg-fill $HOME/.config/wallpaper/brogrammer.jpg
+        feh --bg-fill $HOME/.config/wallpaper/brogrammer.png
         change_theme brogrammer ;;
     $theme3) 
-        feh --bg-fill $HOME/.config/wallpaper/dracula.jpg
+        feh --bg-fill $HOME/.config/wallpaper/dracula.png
         change_theme dracula ;;
     $theme4) 
         feh --bg-fill $HOME/.config/wallpaper/gruvbox.png
@@ -46,6 +46,6 @@ case $select in
         feh --bg-fill $HOME/.config/wallpaper/solarized.png
         change_theme solarized ;;
     $theme7) 
-        feh --bg-fill $HOME/.config/wallpaper/xterm.jpg
+        feh --bg-fill $HOME/.config/wallpaper/xterm.png
         change_theme xterm ;;
 esac    

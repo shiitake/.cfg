@@ -4,6 +4,7 @@ echo "Starting xsession: $(date)"
 
 # user the Xresources file
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$1
+feh --bg-fill "$HOME/.config/wallpaper/default.png"
 
 autostart="compton ssh-agent mpd"
 

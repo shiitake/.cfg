@@ -110,3 +110,8 @@ find $home/.local -maxdepth 2 -type f \( ! -path "*pulse*" \) \( ! -iname "*.png
 # remove any left over bash stuff
 rm -f $home/.bash*
 
+# set default theme to base16
+defaultTheme=base16
+cp "$home/.config/theme/$defaultTheme" "$home/.config/theme/default"
+cp "$home/.config/wallpaper/base16.png" "$home/.config/theme/default.png"
+
