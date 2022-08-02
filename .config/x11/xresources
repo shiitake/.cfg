@@ -7,10 +7,6 @@
 !! Set a default font and font size as below:
 *.font: monospace:size=10
 
-!! include theme colors
-#include "~/.config/theme/theme"
-
-
 /* name		dark	light */
 /* black	0	8 */
 /* red		1	9 */

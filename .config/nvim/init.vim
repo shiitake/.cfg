@@ -12,6 +12,8 @@ Plug 'OmniSharp/omnisharp-vim'
 Plug 'junegunn/fzf'
 Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
