@@ -58,10 +58,21 @@ sudo make install
 cd $repldir
 
 # install dwm blocks
-echo "dwm blocks"
+echo "installing dwm blocks"
 git clone https://github.com/shiitake/dwmblocks.git
 cd dwmblocks
 sudo make install
+cd $repldir
+
+
+# install slock
+echo "installing slock "
+# installing these dependencies here to make sure that it doesn't break XFT
+sudo apt-get install -qq libimlib2-dev
+
+git clone https://github.com/shiitake/slock.git
+cd slock
+sudo make clean install
 cd $repldir
 
 # install SDDM display manager

@@ -63,6 +63,7 @@ libpulse-dev \
 libx11-xcb-dev \
 libxcb-res0-dev \
 libxinerama-dev \
+libxrandr-dev \
 libxrender-dev \
 mesa-utils \
 phonon-backend-gstreamer-common \
