@@ -35,9 +35,6 @@ sudo make install
 cd $repldir
 sudo rm -rf "$repldir/libxft"
 
-# install suckless-tools after XFT because it reinstalls libxft2
-sudo apt-get install -qq suckless-tools
-
 # install st
 echo "installing ST"
 cd $repldir
