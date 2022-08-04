@@ -20,7 +20,7 @@ sed -i "s|${codename} main|${codename} main contrib non-free|g" /etc/apt/sources
 	&& sudo sed -i "s|${codename}-updates main|${codename}-updates main contrib non-free|g" /etc/apt/sources.list 
 
 # remove existing brave key
-[ -f /etc/apt/sources.list.d/brave-browser-release.list ] && sudo rm /etc/apt/scourcs.list.d/brave-browser-release.list;
+[ -f /etc/apt/sources.list.d/brave-browser-release.list ] && sudo rm /etc/apt/sources.list.d/brave-browser-release.list;
 # add brave key
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"| \
