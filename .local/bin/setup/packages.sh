@@ -19,15 +19,20 @@ sed -i "s|${codename} main|${codename} main contrib non-free|g" /etc/apt/sources
 	&& sudo sed -i "s|${codename}-security main|${codename}-security main contrib non-free|g" /etc/apt/sources.list \
 	&& sudo sed -i "s|${codename}-updates main|${codename}-updates main contrib non-free|g" /etc/apt/sources.list 
 
-# Add brave key
+# remove existing brave key
+[ -f /etc/apt/sources.list.d/brave-browser-release.list ] && sudo rm /etc/apt/scourcs.list.d/brave-browser-release.list;
+# add brave key
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"| tee /etc/apt/sources.list.d/brave-browser-release.list
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"| \
+	tee /etc/apt/sources.list.d/brave-browser-release.list
 
+# remove existing brave key
+[ -f /etc/apt/sources.list.d/signal-xenial.list ] && sudo rm /etc/apt/sources.list.d/signal-xenial.list;
 # add signal key
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
 cat signal-desktop-keyring.gpg | sudo tee -a /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | \
-  sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+  sudo tee /etc/apt/sources.list.d/signal-xenial.list
 rm signal-desktop-keyring.gpg
 
 apt-get update -qq
