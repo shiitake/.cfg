@@ -75,6 +75,10 @@ cd slock
 sudo make clean install
 cd $repldir
 
+# setup screenlock image
+[ ! -d /usr/local/share/wallpaper ] && sudo mkdir /usr/local/share/wallpaper
+sudo cp $home/.config/wallpaper/positive.png /usr/local/share/wallpaper/screen-lock.png
+
 # install SDDM display manager
 echo "installing slim display manager"
 sudo debconf-set-selections <<EOF
