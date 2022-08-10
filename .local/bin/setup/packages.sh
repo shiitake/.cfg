@@ -64,6 +64,7 @@ gstreamer1.0-plugins-good \
 libd3dadapter9-mesa \
 libfontconfig1-dev \
 libharfbuzz-dev \
+libnotify-bin \
 libpulse-dev \
 libx11-xcb-dev \
 libxcb-res0-dev \
@@ -87,6 +88,7 @@ xutils-dev
 # install the apps you know and love
 echo "### Installing the things"
 apt-get install -y --no-install-recommends \
+abook \
 aptitude \
 apt-file \
 apt-transport-https \
@@ -98,6 +100,7 @@ feh \
 fzf \
 git \
 htop \
+isync \
 iw \
 jq \
 make \
@@ -105,10 +108,14 @@ moreutils \
 mosh \
 mpd \
 mpc \
+msmtp \
+neomutt \
 neovim \
 net-tools \
+notmuch \
 openssh-client \
 openssh-server \
+pass \
 powerline \
 pulsemixer \
 ranger \
@@ -121,6 +128,7 @@ task-spooler \
 tmux \
 tree \
 unattended-upgrades \
+urlview \
 wireless-tools \
 zsh
 

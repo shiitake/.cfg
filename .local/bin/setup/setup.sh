@@ -75,6 +75,12 @@ cd slock
 sudo make clean install
 cd $repldir
 
+# install mutt-wizard
+git clone https://github.com/LukeSmithxyz/mutt-wizard
+cd mutt-wizard
+sudo make install
+cd $repldir
+
 # setup screenlock image
 [ ! -d /usr/local/share/wallpaper ] && sudo mkdir /usr/local/share/wallpaper
 sudo cp $home/.config/wallpaper/positive.png /usr/local/share/wallpaper/screen-lock.png
@@ -87,7 +93,7 @@ EOF
 
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -qq sddm
 
-sudo mkdir /etc/sddm.conf.d
+[ ! -d /etc/sddm.conf.d ] && sudo mkdir /etc/sddm.conf.d
 sudo cp $home/.config/sddm/sddm.conf /etc/sddm.conf.d/sddm.conf
 
 # install sddm theme
@@ -103,13 +109,36 @@ sudo mv aerial-sddm-theme /usr/share/sddm/themes
 sudo cp $home/.config/x11/xsession.desktop /usr/share/xsessions/xsession.desktop
 
 # create symlinks to xsession stuff maybe? 
-ln -s $home/.config/shell/profile $home/.zprofile
-ln -s $home/.config/x11/xsession $home/.xsession
-ln -s $home/.config/x11/xsessionrc $home/.xsessionrc
+[ ! -L $home/.zprofile ] && ln -s $home/.config/shell/profile $home/.zprofile
+[ ! -L $home/.xsession ] && ln -s $home/.config/x11/xsession $home/.xsession
+[ ! -L $home/.xsessionrc ] && ln -s $home/.config/x11/xsessionrc $home/.xsessionrc
 
 # install vim plug
+[ ! -f $home/.local/share/nvim/site/autoload/plug.vim ] && \
 curl -fLo "$home/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim -c "PlugInstall|q|q"
+
+# setup gpg
+[ ! -d $home/.local/share/gnupg  ] && mkdir $home/.local/share/gnupg
+chmod 600 $home/.local/share/gnupg/*
+chmod 700 $home/.local/share/gnupg
+# todo add ability to create gpg key automatically
+# cat >keyfile <<EOF
+# %echo Generating a default key
+# Key-Type: default
+# Subkey-Type: default
+# Name-Real: My Name
+# Name-Comment: 
+# Name-Email: my@email.com
+# Expire-Date: 0
+# Passphrase: $passphrase
+# # Do a commit here, so that we can later print "done"
+# %commit
+# %echo done
+# EOF
+#
+# gpg --batch --generate-key keyfile
 
 # cleanup
 # Fix line-ending issues by running dos2unix on all the plaintext files
