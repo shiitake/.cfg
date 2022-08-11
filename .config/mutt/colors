@@ -1,0 +1,78 @@
+# vim: filetype=neomuttrc
+set allow_ansi=yes
+
+# Color themes
+# basics
+color indicator     black       color252   # selected email in index
+color message       color28		color255    # informational messages
+color status        black		color250
+color status        color255    color167 ' NeoMutt '
+color error         color58     color255    # message line error text
+color attachment    black       color255    # attachment headers
+color signature     color252    color255    # Email's signature lines
+color markers       color104	color255    # wrapped-line /^\+/ markers
+color tilde         color69		color255    # vi-like tildes marking black lines
+color search        black       color153    # search patterns in pager
+color tree          color108		color255    # arrow in threads ('-->')
+color bold          brightblack       color255  # highlighting bold patters in the body of messages
+
+
+# index ------------------------------
+#
+color index_author  lightcolor246 color255 ~R        # index author (who sent it)
+color index_subject  lightcolor246 color255 ~R        # index subject
+color index_flags  lightcolor246 color255 ~R        # index tags
+color index    lightcolor246 		color255 ~R     # read messages
+color index    black 		color255 ~N     # new messages
+color index     color100    color255 ~F     # flagged messages
+color index     color55     color255 ~T     # tagged messages
+color index     color18     color255 ~D     # deleted messages
+color index_collapsed   color38 color255    # number of messages in a collapsed thread, %M
+color index_label   color246 color255        # Message label, &y %Y
+color index_number  color246 color255        # Message number, %C
+color index_size    color246 color255        # Message size, %c %cr %l
+color index_tags    color246 color255        # transformed message tags, %g %J
+color index_date    color246 color255        # Date field
+color index_author  black color255 ~N        # index author (who sent it)
+color index_subject  black color255 ~N        # index subject
+color index_flags  black color255 ~N        # index tags
+color index     color246		color255 ~A     # all messages
+
+# message headers -------------------
+
+color hdrdefault    black     color255
+color header        color93     color255 '^From:'
+color header        black     color255 "^(Subject|Date)"
+color header        color93     color255 '^To:'
+
+# body ------------------------------
+
+color normal        black       color255
+color quoted        color246    color255
+color quoted1       color246    color255
+color quoted2       color246    color255
+color quoted3       color246    color255
+
+color body      color93     color255 "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
+color body      color93		color255 "mailto:[-a-z_0-9.]+ <at> [-a-z_0-9.]+"
+color body      color93     color255 "news:[^ \">\t\r\n]*"
+color body      color93	color255 "[-a-z_0-9.%$]+ <at> [-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body      color93	color255 "^.*Autoview.*$"
+
+# attachments -----------------------
+# color attach_headers
+
+# sidebar --------------------------
+color sidebar_divider black   color255    # dividing line between sidebar and index
+color sidebar_flagged color246   color255    # mailboxes containing flagged mail
+color status        color255    color167 ' NeoMutt '
+color sidebar_highlight color255 color167    # cursor to select a mailbox
+color sidebar_indicator   color255   color167    # the mailbox open in the index panel
+color sidebar_new     black color255    # mailboxes continaing new mail
+color sidebar_ordinary    color246   color255    #mailboxes that have no new/flagged mail
+color sidebar_spoolfile   black   color255    # mailbox that receives incoming mail
+
+# general
+# color prompt
+# color progress
+# color index_flags
