@@ -5,7 +5,7 @@ set -e
 ##start here
 # check if running the right os/disto
 # this has only been tested on debian running bullseye or buster
-codename=$(grep "CODENAME" /etc/os-release | cut -d '=' -f 2)
+codename=$(lsb_release -cs)
 [ ! "$codename" = "buster" ] && [ ! "$codename" = "bullseye" ] && echo "This script only works on Debian Buster or Bullseye. You're running $codename" && exit 1
 
 name=$(whoami)

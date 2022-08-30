@@ -3,21 +3,34 @@
 set -e
 
 # get distro codename
-codename=$(grep "CODENAME" /etc/os-release | cut -d '=' -f 2)
+codename=$(lsb_release -cs)
 
 # setup debs to handle non-free stuff
-# it's possible to mess up your sources list if you run this more than once (e.g. if it fails)
-# if it fails you should restore from the backup before re-running
-if [ -f /etc/apt/sources.list.backup ]; then 
-	# restore from backup
-	cp /etc/apt/sources.list.backup /etc/apt/sources.list
-else
-	# make a backup
-	cp /etc/apt/sources.list /etc/apt/sources.list.backup
-fi
-sed -i "s|${codename} main|${codename} main contrib non-free|g" /etc/apt/sources.list \
-	&& sudo sed -i "s|${codename}-security main|${codename}-security main contrib non-free|g" /etc/apt/sources.list \
-	&& sudo sed -i "s|${codename}-updates main|${codename}-updates main contrib non-free|g" /etc/apt/sources.list 
+# sources help for when I forgot: https://wiki.debian.org/SourcesList
+# add-apt-repository for this
+add-apt-repository "contrib" > /dev/null
+add-apt-repository "non-free" > /dev/null
+
+# setup apt-pinning because we like to live on the edge
+echo 'deb http://deb.debian.org/debian testing main contrib non-free' | tee -a /etc/apt/sources.list.d/debian-testing.list
+echo 'deb-src http://deb.debian.org/debian testing main contrib non-free' | tee -a /etc/apt/sources.list.d/debian-testing.list
+echo 'deb http://deb.debian.org/debian unstable main contrib non-free' | tee -a /etc/apt/sources.list.d/debian-unstable.list
+echo 'deb-src http://deb.debian.org/debian unstable main contrib non-free'  | tee -a /etc/apt/sources.list.d/debian-unstable.list
+
+# set pin preferences - currently only neomutt is added for testing/unstable
+[ ! -f /etc/apt/preferences.d/unstable.pref ] && printf "Package: *\n\
+Pin: release a=%s\n\
+Pin-Priority: 700\n\n\
+Package: neomutt\n\
+Pin: release a=testing\n\
+Pin-Priority: 650\n\n\
+Package: neomutt\n\
+Pin: release a=unstable\n\
+Pin-Priority: 600\n" "$codename" | tee /etc/apt/preferences.d/unstable.pref
+
+# increase apt cache limit
+[ ! -f /etc/apt/apt.conf.d/99cache-limit.conf ] && echo 'APT::Cache-Limit "8388608";' | tee /etc/apt/apt.conf.d/99cache-limit.conf
+
 
 # remove existing brave key
 [ -f /etc/apt/sources.list.d/brave-browser-release.list ] && sudo rm /etc/apt/sources.list.d/brave-browser-release.list;
@@ -26,7 +39,7 @@ curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"| \
 	tee /etc/apt/sources.list.d/brave-browser-release.list
 
-# remove existing brave key
+# remove existing signal key
 [ -f /etc/apt/sources.list.d/signal-xenial.list ] && sudo rm /etc/apt/sources.list.d/signal-xenial.list;
 # add signal key
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
