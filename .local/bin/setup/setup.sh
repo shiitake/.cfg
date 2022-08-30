@@ -21,10 +21,9 @@ sudo chsh -s $(which zsh) "$name" >/dev/null 2>&1
 sudo wget -O /usr/share/fonts/truetype/JoyPixels.ttf https://cdn.joypixels.com/arch-linux/font/6.6.0/joypixels-android.ttf
 fc-cache -f -v
 
-# install XFT manually - this fixed the emoji problem. hopefully it will be packaged soon.
-# moved this to packages.sh
-# sudo apt-get remove -qq libxft-dev libxft2
-# needs packages reinstalled: libxrender-dev, libfontconfig1-dev
+# the patched version of libxft2 (2.3.2-3+zancl1) should already be installed from the barrett.computer repo
+# by building and installing from source we'll get more up to date version and it will satisfy any 
+# package dependencies for XFT.
 
 echo "installing XFT"
 cd $repldir

@@ -7,30 +7,14 @@ codename=$(lsb_release -cs)
 
 # setup debs to handle non-free stuff
 # sources help for when I forgot: https://wiki.debian.org/SourcesList
-# add-apt-repository for this
 add-apt-repository "contrib" > /dev/null
 add-apt-repository "non-free" > /dev/null
 
-# setup apt-pinning because we like to live on the edge
-echo 'deb http://deb.debian.org/debian testing main contrib non-free' | tee -a /etc/apt/sources.list.d/debian-testing.list
-echo 'deb-src http://deb.debian.org/debian testing main contrib non-free' | tee -a /etc/apt/sources.list.d/debian-testing.list
-echo 'deb http://deb.debian.org/debian unstable main contrib non-free' | tee -a /etc/apt/sources.list.d/debian-unstable.list
-echo 'deb-src http://deb.debian.org/debian unstable main contrib non-free'  | tee -a /etc/apt/sources.list.d/debian-unstable.list
-
-# set pin preferences - currently only neomutt is added for testing/unstable
-[ ! -f /etc/apt/preferences.d/unstable.pref ] && printf "Package: *\n\
-Pin: release a=%s\n\
-Pin-Priority: 700\n\n\
-Package: neomutt\n\
-Pin: release a=testing\n\
-Pin-Priority: 650\n\n\
-Package: neomutt\n\
-Pin: release a=unstable\n\
-Pin-Priority: 600\n" "$codename" | tee /etc/apt/preferences.d/unstable.pref
-
-# increase apt cache limit
-[ ! -f /etc/apt/apt.conf.d/99cache-limit.conf ] && echo 'APT::Cache-Limit "8388608";' | tee /etc/apt/apt.conf.d/99cache-limit.conf
-
+# add barrett repo
+[ -f /etc/apt/sources.list.d/barrett.list ] && sudo rm /etc/apt/sources.list.d/barrett.list;
+wget -O- -q https://apt.barrett.computer/apt.barrett.computer.gpg.key | apt-key add -
+echo "deb https://apt.barrett.computer/debian $(codename) main" | tee /etc/apt/sources.list.d/barrett.list
+[ ! -f /etc/apt/preferences.d/100barrett ] && printf "Package: *\nPin: origin apt.barrett.computer\nPin-Priority: 1001" | tee /etc/apt/preferences.d/100barrett
 
 # remove existing brave key
 [ -f /etc/apt/sources.list.d/brave-browser-release.list ] && sudo rm /etc/apt/sources.list.d/brave-browser-release.list;
@@ -43,10 +27,23 @@ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=
 [ -f /etc/apt/sources.list.d/signal-xenial.list ] && sudo rm /etc/apt/sources.list.d/signal-xenial.list;
 # add signal key
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
-cat signal-desktop-keyring.gpg | sudo tee -a /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+cat signal-desktop-keyring.gpg | tee -a /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | \
-  sudo tee /etc/apt/sources.list.d/signal-xenial.list
+  tee /etc/apt/sources.list.d/signal-xenial.list
 rm signal-desktop-keyring.gpg
+
+# add testing/unstable because we like to live on the edge
+echo 'deb http://deb.debian.org/debian testing main contrib non-free' | tee -a /etc/apt/sources.list.d/debian-testing.list
+echo 'deb-src http://deb.debian.org/debian testing main contrib non-free' | tee -a /etc/apt/sources.list.d/debian-testing.list
+echo 'deb http://deb.debian.org/debian unstable main contrib non-free' | tee -a /etc/apt/sources.list.d/debian-unstable.list
+echo 'deb-src http://deb.debian.org/debian unstable main contrib non-free'  | tee -a /etc/apt/sources.list.d/debian-unstable.list
+
+# set pin preferences - only install testing/unstable if I ask for it
+[ ! -f /etc/apt/preferences.d/98testing ] && printf "Package: *\nPin: release a=testing\nPin-Priority: 100\n" | tee /etc/apt/preferences.d/98testing
+[ ! -f /etc/apt/preferences.d/99unstable ] && printf "Package: *\nPin: release a=unstable\nPin-Priority: 100\n" | tee /etc/apt/preferences.d/99unstable
+
+# increase apt cache limit
+[ ! -f /etc/apt/apt.conf.d/99cache-limit.conf ] && echo 'APT::Cache-Limit "8388608";' | tee /etc/apt/apt.conf.d/99cache-limit.conf
 
 apt-get update -qq
 
@@ -81,6 +78,7 @@ libnotify-bin \
 libpulse-dev \
 libx11-xcb-dev \
 libxcb-res0-dev \
+libxft2 \
 libxinerama-dev \
 libxrandr-dev \
 libxrender-dev \
