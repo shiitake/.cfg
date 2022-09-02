@@ -124,7 +124,7 @@ nvim -c "PlugInstall|q|q"
 
 # setup gpg
 [ ! -d $home/.local/share/gnupg  ] && mkdir $home/.local/share/gnupg
-chmod 600 $home/.local/share/gnupg/*
+[ -f $home/.local/share/gnupg/* ] && chmod 600 $home/.local/share/gnupg/*
 chmod 700 $home/.local/share/gnupg
 # todo add ability to create gpg key automatically
 # cat >keyfile <<EOF
