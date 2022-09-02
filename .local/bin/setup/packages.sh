@@ -13,8 +13,8 @@ add-apt-repository "non-free" > /dev/null
 # add barrett repo
 [ -f /etc/apt/sources.list.d/barrett.list ] && sudo rm /etc/apt/sources.list.d/barrett.list;
 wget -O- -q https://apt.barrett.computer/apt.barrett.computer.gpg.key | apt-key add -
-echo "deb https://apt.barrett.computer/debian $(codename) main" | tee /etc/apt/sources.list.d/barrett.list
-[ ! -f /etc/apt/preferences.d/100barrett ] && printf "Package: *\nPin: origin apt.barrett.computer\nPin-Priority: 1001" | tee /etc/apt/preferences.d/100barrett
+echo "deb https://apt.barrett.computer/debian $codename main" | tee /etc/apt/sources.list.d/barrett.list
+[ ! -f /etc/apt/preferences.d/100barrett ] && printf "Package: *\nPin: origin apt.barrett.computer\nPin-Priority: 1001\n" | tee /etc/apt/preferences.d/100barrett
 
 # remove existing brave key
 [ -f /etc/apt/sources.list.d/brave-browser-release.list ] && sudo rm /etc/apt/sources.list.d/brave-browser-release.list;
