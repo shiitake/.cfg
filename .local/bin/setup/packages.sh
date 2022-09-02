@@ -44,7 +44,7 @@ echo 'deb-src http://deb.debian.org/debian unstable main contrib non-free'  | te
 [ ! -f /etc/apt/preferences.d/99unstable ] && printf "Package: *\nPin: release a=unstable\nPin-Priority: 100\n" | tee /etc/apt/preferences.d/99unstable
 
 # increase apt cache limit
-rm /var/lib/apt/lists/* -vf 2> /dev/null
+rm -rf /var/lib/apt/lists/* 
 [ ! -f /etc/apt/apt.conf.d/99cache-limit.conf ] && echo 'APT::Cache-Limit "100000000";' | tee /etc/apt/apt.conf.d/99cache-limit.conf
 
 echo '### Updating packages ###'
