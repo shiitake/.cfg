@@ -7,6 +7,7 @@ codename=$(lsb_release -cs)
 
 # setup debs to handle non-free stuff
 # sources help for when I forgot: https://wiki.debian.org/SourcesList
+echo "### Adding package sources ###"
 add-apt-repository "contrib" > /dev/null
 add-apt-repository "non-free" > /dev/null
 
@@ -43,9 +44,11 @@ echo 'deb-src http://deb.debian.org/debian unstable main contrib non-free'  | te
 [ ! -f /etc/apt/preferences.d/99unstable ] && printf "Package: *\nPin: release a=unstable\nPin-Priority: 100\n" | tee /etc/apt/preferences.d/99unstable
 
 # increase apt cache limit
-[ ! -f /etc/apt/apt.conf.d/99cache-limit.conf ] && echo 'APT::Cache-Limit "8388608";' | tee /etc/apt/apt.conf.d/99cache-limit.conf
+rm /var/lib/apt/lists/* -vf > /dev/null
+[ ! -f /etc/apt/apt.conf.d/99cache-limit.conf ] && echo 'APT::Cache-Limit "100000000";' | tee /etc/apt/apt.conf.d/99cache-limit.conf
 
-apt-get update -qq
+echo '### Updating packages ###'
+apt-get update -qq > /dev/null
 
 # remove packages
 echo "### Removing packages ###"
@@ -145,4 +148,5 @@ zsh
 
 
 # only do this after we've installed everything
-apt-get autoremove -qq
+echo "### Removing extra packages ###"
+apt-get autoremove -qq > /dev/null

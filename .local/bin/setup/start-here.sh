@@ -19,11 +19,13 @@ sudo apt-get install -qq git curl sudo
 [ ! -d "$backup" ] && mkdir -p "$backup"
 
 # cleam up home and remove extra dotfiles that we're not going to use
+echo "### Cleaning up extra dotfiles ###"
 for x in .bash_profile .bash_login .bash_logout .bashrc .profile .xprofile .xinitrc; do
 	[ -f $x ] && mv $x "$backup/$x"
 done
 
 # make sure that alias is recognized in the script. 
+echo "### Cloning repository ###"
 shopt -s expand_aliases
 alias config='/usr/bin/git --git-dir=$repldir/.cfg --work-tree=$HOME'
 echo ".cfg" >> .gitignore
@@ -40,6 +42,7 @@ sudo sh $HOME/.local/bin/setup/packages.sh
 sh $HOME/.local/bin/setup/setup.sh
 
 # update permissions to something more sensible
+echo "### Finalizing permissions ###"
 [ -f "/etc/sudoers.d/$name" ] && sudo mv "/etc/sudoers.d/$name" /etc/sudoers.d/tmp
 echo "$name ALL=(ALL:ALL) ALL, NOPASSWD:/usr/sbin/shutdown,/usr/sbin/reboot,/usr/sbin/halt, /usr/bin/systemctl suspend,/usr/bin/mount,/usr/bin/mount,/usr/bin/apt update, /usr/bin/apt-get update, /usr/bin/apt install -y,/usr/bin/apt-get install -y,/usr/bin/apt search,/usr/bin/apt-get search,/usr/sbin/iwlist,/usr/sbin/iw, /usr/sbin/ifconfig" | sudo tee "/etc/sudoers.d/$name"
 sudo rm -f /etc/sudoers.d/tmp

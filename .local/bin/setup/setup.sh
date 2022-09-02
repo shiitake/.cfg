@@ -17,7 +17,10 @@ repldir="$home/git"
 # set zsh as default
 sudo chsh -s $(which zsh) "$name" >/dev/null 2>&1
 
+echo "### Manual setup stuff ###"
+
 # download joypixel font
+echo "### Downloading joypixels ###"
 sudo wget -O /usr/share/fonts/truetype/JoyPixels.ttf https://cdn.joypixels.com/arch-linux/font/6.6.0/joypixels-android.ttf
 fc-cache -f -v
 
@@ -25,7 +28,7 @@ fc-cache -f -v
 # by building and installing from source we'll get more up to date version and it will satisfy any 
 # package dependencies for XFT.
 
-echo "installing XFT"
+echo "### Installing XFT ###"
 cd $repldir
 git clone https://gitlab.freedesktop.org/xorg/lib/libxft.git
 cd libxft
@@ -35,7 +38,7 @@ cd $repldir
 sudo rm -rf "$repldir/libxft"
 
 # install st
-echo "installing ST"
+echo "### Installing ST ###"
 cd $repldir
 git clone https://github.com/shiitake/st.git
 cd st
@@ -43,21 +46,21 @@ sudo make install
 cd $repldir
 
 # install dwm
-echo "installing dwm"
+echo "### Installing dwm ###"
 git clone https://github.com/shiitake/dwm.git
 cd dwm
 sudo make install
 cd $repldir
 
 # install demu
-echo "installing dmenu"
+echo "### Installing dmenu ###"
 git clone https://github.com/shiitake/dmenu.git
 cd dmenu
 sudo make install
 cd $repldir
 
 # install dwm blocks
-echo "installing dwm blocks"
+echo "### Installing dwm blocks ###"
 git clone https://github.com/shiitake/dwmblocks.git
 cd dwmblocks
 sudo make install
@@ -65,7 +68,7 @@ cd $repldir
 
 
 # install slock
-echo "installing slock "
+echo "### Installing slock ###"
 # installing these dependencies here to make sure that it doesn't break XFT
 sudo apt-get install -qq libimlib2-dev
 
@@ -75,6 +78,7 @@ sudo make clean install
 cd $repldir
 
 # install mutt-wizard
+echo "### Installing mutt-wizard ###"
 git clone https://github.com/LukeSmithxyz/mutt-wizard
 cd mutt-wizard
 sudo make install
@@ -85,7 +89,7 @@ cd $repldir
 sudo cp $home/.config/wallpaper/positive.png /usr/local/share/wallpaper/screen-lock.png
 
 # install SDDM display manager
-echo "installing slim display manager"
+echo "### Installing slim display manager ###"
 sudo debconf-set-selections <<EOF
 sddm  shared/default-x-display-manager select sddm
 EOF
@@ -96,7 +100,7 @@ DEBIAN_FRONTEND=noninteractive sudo apt-get install -qq sddm
 sudo cp $home/.config/sddm/sddm.conf /etc/sddm.conf.d/sddm.conf
 
 # install sddm theme
-echo "installing sddm theme"
+echo "### Installing sddm theme ###"
 cd $repldir
 git clone https://github.com/3ximus/aerial-sddm-theme.git
 sudo mv aerial-sddm-theme /usr/share/sddm/themes
@@ -142,6 +146,7 @@ chmod 700 $home/.local/share/gnupg
 # cleanup
 # Fix line-ending issues by running dos2unix on all the plaintext files
 # excluding things in the pulse directory and image files
+echo "### File cleanup ###"
 find $home/.config -maxdepth 2 -type f \( ! -path "*pulse*" \) \( ! -iname "*.png" \) -exec dos2unix -f {} \;
 find $home/.local -maxdepth 2 -type f \( ! -path "*pulse*" \) \( ! -iname "*.png" \) -exec dos2unix -f {} \;
 
