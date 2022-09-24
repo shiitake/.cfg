@@ -41,6 +41,9 @@ sudo sh $HOME/.local/bin/setup/packages.sh
 # setup everything else
 sh $HOME/.local/bin/setup/setup.sh
 
+# setup gpg key
+[ -n "$PASSPHRASE" ] && sudo sh $HOME/.local/bin/setup/setup-gpg.sh
+
 # update permissions to something more sensible
 echo "### Finalizing permissions ###"
 [ -f "/etc/sudoers.d/$name" ] && sudo mv "/etc/sudoers.d/$name" /etc/sudoers.d/tmp
