@@ -36,7 +36,7 @@ done
 # make sure that alias is recognized in the script. 
 echo "### Cloning repository ###"
 shopt -s expand_aliases
-alias config='/usr/bin/git --git-dir=$repldir/.cfg --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$repldir/.cfg --work-tree=$home'
 sudo -u $name echo ".cfg" >> "$home/.gitignore"
 sudo -u $name git clone -b linux --config status.showUntrackedFiles=no --bare https://github.com/shiitake/.cfg.git $home/git/.cfg
 
