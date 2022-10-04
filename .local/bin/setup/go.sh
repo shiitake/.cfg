@@ -6,7 +6,7 @@ set -e
 [ "$EUID" -ne 0 ] && echo "This script must run as root user" && exit 1
 
 name=$1
-[ -z "$user" ] && echo "Please provide a username to this script" && exit 1
+[ -z "$name" ] && echo "Please provide a username to this script" && exit 1
 
 # check if running the right os/disto
 # this has only been tested on debian running bullseye or buster
