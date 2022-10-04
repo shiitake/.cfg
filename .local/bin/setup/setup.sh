@@ -120,7 +120,9 @@ sudo cp $home/.config/x11/xsession.desktop /usr/share/xsessions/xsession.desktop
 [ ! -f $home/.local/share/nvim/site/autoload/plug.vim ] && \
 curl -fLo "$home/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim -c "PlugInstall|q|q"
+nvim -c "PlugInstall|q|q" &
+nvimpid="$1"
+wait "$nvimpid"
 
 # setup gpg
 [ ! -d $home/.local/share/gnupg  ] && mkdir $home/.local/share/gnupg

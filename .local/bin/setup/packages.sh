@@ -103,6 +103,7 @@ xutils-dev
 echo "### Installing the things"
 apt-get install -y --no-install-recommends \
 abook \
+alsa-utils \
 aptitude \
 apt-file \
 apt-transport-https \
