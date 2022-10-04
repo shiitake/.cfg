@@ -42,6 +42,8 @@ sudo -u $name git clone -b linux --config status.showUntrackedFiles=no --bare ht
 
 # move conflicting files
 # sudo alias is needed when calling two aliass in a row
-alias sudo='sudo '
-sudo -u $name config checkout linux 2>&1 | grep -E "\s+\." | awk '{print $1}' | xargs -I{} sh -c "cp --parents {} $backup; rm {};"
-sudo -u $name config checkout linux
+alias sudo="sudo -u $name "
+sudo config checkout linux 2>&1 | grep -E "\s+\." | awk '{print $1}' | xargs -I{} sh -c "cp --parents {} $backup; rm {};"
+sudo config checkout linux
+
+unalias sudo
