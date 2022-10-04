@@ -13,11 +13,11 @@ name=$1
 codename=$(lsb_release -cs)
 [ ! "$codename" = "buster" ] && [ ! "$codename" = "bullseye" ] && echo "This script only works on Debian Buster or Bullseye. You're running $codename" && exit 1
 
-# setup user permissions
-echo "$name ALL=(ALL) NOPASSWD:ALL" | tee "/etc/sudoers.d/$name"
-
 # install pre-req packages
 apt-get install -y git sudo software-properties-common
+
+# setup user permissions
+echo "$name ALL=(ALL) NOPASSWD:ALL" | tee "/etc/sudoers.d/$name"
 
 home="/home/$name"
 repldir="$home/git"
