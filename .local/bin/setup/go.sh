@@ -37,7 +37,7 @@ done
 echo "### Cloning repository ###"
 shopt -s expand_aliases
 alias config='/usr/bin/git --git-dir=$repldir/.cfg --work-tree=$home'
-sudo -u $name echo ".cfg" >> "$home/.gitignore" && chown $name "$home/.gitignore"
+sudo -u $name echo ".cfg" >> "$home/.gitignore" && chown $name:$name "$home/.gitignore"
 sudo -u $name git clone -b linux --config status.showUntrackedFiles=no --bare https://github.com/shiitake/.cfg.git $home/git/.cfg
 
 # move conflicting files
@@ -45,5 +45,21 @@ sudo -u $name git clone -b linux --config status.showUntrackedFiles=no --bare ht
 alias sudo="sudo -u $name "
 sudo config checkout linux 2>&1 | grep -E "\s+\." | awk '{print $1}' | xargs -I{} sh -c "cp --parents {} $backup; rm {};"
 sudo config checkout linux
-
+# unalias sudo
 unalias sudo
+
+
+# install packages now
+sudo sh $home/.local/bin/setup/packages.sh
+
+
+# install everything else now
+sudo -u $name sh $home/.local/bin/setup/setup.sh
+
+
+# update permissions to something more sensible
+echo "### Finalizing permissions ###"
+[ -f "/etc/sudoers.d/$name" ] && sudo mv "/etc/sudoers.d/$name" /etc/sudoers.d/tmp
+echo "$name ALL=(ALL:ALL) ALL, NOPASSWD:/usr/sbin/shutdown,/usr/sbin/reboot,/usr/sbin/halt, /usr/bin/systemctl suspend,/usr/bin/mount,/usr/bin/mount,/usr/bin/apt update, /usr/bin/apt-get update, /usr/bin/apt install -y,/usr/bin/apt-get install -y,/usr/bin/apt search,/usr/bin/apt-get search,/usr/sbin/iwlist,/usr/sbin/iw, /usr/sbin/ifconfig" | sudo tee "/etc/sudoers.d/$name"
+sudo rm -f /etc/sudoers.d/tmp
+
