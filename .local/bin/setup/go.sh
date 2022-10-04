@@ -38,7 +38,7 @@ echo "### Cloning repository ###"
 shopt -s expand_aliases
 alias config='/usr/bin/git --git-dir=$repldir/.cfg --work-tree=$HOME'
 sudo -u $name echo ".cfg" >> "$home/.gitignore"
-sudo -u $name git clone -b linux --config status.showUntrackedFiles=no --bare https://github.com/shiitake/.cfg.git $HOME/git/.cfg
+sudo -u $name git clone -b linux --config status.showUntrackedFiles=no --bare https://github.com/shiitake/.cfg.git $home/git/.cfg
 
 # move conflicting files
 sudo -u $name config checkout linux 2>&1 | grep -E "\s+\." | awk '{print $1}' | xargs -I{} sh -c "cp --parents {} $backup; rm {};"
