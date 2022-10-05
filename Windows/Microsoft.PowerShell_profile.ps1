@@ -16,8 +16,9 @@ if ($grep.count -lt 1) { new-alias grep findstr }
 $ssh = get-alias -name ssh
 if ($ssh.count -lt 1) { new-alias ssh new-sshsession }
 
-Import-Module oh-my-posh
-Set-Theme -name 'paradox'
+# Import-Module oh-my-posh
+# Set-Theme -name 'paradox'
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\paradox.omp.json" | Invoke-Expression
 
 
 # Start-SshAgent

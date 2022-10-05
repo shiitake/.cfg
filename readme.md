@@ -21,7 +21,14 @@ It would be awesome if I would just remember this stuff but for now this will ha
 4. Copy and paste the contents of settings.json into the WindowsTerminal settings
   * Make sure the backgroundImage path is correct (it should be if your git repository is C:\git) 
 
+  ```
+  $termlocation='\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\'
+  $destination= join-path -path $([System.Environment]::ExpandEnvironmentVariables("LOCALAPPDATA%")) -childpath $termlocation
+  Copy-Item -Path .\Windows\settings.json -Destination $destination
+  ```
+
 5. Download the fonts you want - probably the easiest way to do this is with `scoop.sh` (also see https://github.com/matthewjberger/scoop-nerd-fonts):
+<<<<<<< Updated upstream
 	a. `iwr -useb get.scoop.sh | iex`
 	b. `scoop bucket add nerd-fonts`
 	c. `scoop install sudo`
@@ -38,6 +45,7 @@ Copy-Item -Path ./*.ps1 -Destination $profileDir -Exclude "bootstrap.ps1"
 Remove-Variable profileDir
 ```
 
+>>>>>>> Stashed changes
 7. Install PowerTemplate `Import-Module -Name C:\git\.cfg\PowerShell\PowerTemplate\ -Verbose`
 
 8. Setup neovim:
