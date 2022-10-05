@@ -128,22 +128,6 @@ wait "$nvimpid"
 [ ! -d $home/.local/share/gnupg  ] && mkdir $home/.local/share/gnupg
 [ -f $home/.local/share/gnupg/* ] && chmod 600 $home/.local/share/gnupg/*
 chmod 700 $home/.local/share/gnupg
-# todo add ability to create gpg key automatically
-# cat >keyfile <<EOF
-# %echo Generating a default key
-# Key-Type: default
-# Subkey-Type: default
-# Name-Real: My Name
-# Name-Comment: 
-# Name-Email: my@email.com
-# Expire-Date: 0
-# Passphrase: $passphrase
-# # Do a commit here, so that we can later print "done"
-# %commit
-# %echo done
-# EOF
-#
-# gpg --batch --generate-key keyfile
 
 # cleanup
 # Fix line-ending issues by running dos2unix on all the plaintext files

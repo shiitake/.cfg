@@ -9,9 +9,8 @@ It would be awesome if I would just remember this stuff but for now this will ha
 1. From a fresh install, open a console (Ctrl-Alt-F2)
 2. Login as the user you created when installing the os
 3. Change to root: `su -`
-4. Add yourself to sudo and exit: `echo "username ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/username && exit`
-4. Install git, curl, sudo and software properties common: `sudo apt install -y git curl sudo software-properties-common`
-5. Run the start-here script: `curl -Lks https://raw.githubusercontent.com/shiitake/.cfg/linux/.local/bin/setup/start-here.sh | /bin/bash`
+4. Install curl: `apt install -y curl`
+5. Run the start-here script: `curl -Lks https://raw.githubusercontent.com/shiitake/.cfg/linux/.local/bin/setup/go.sh | bash -s username`
 6. Wait for everything to finish.
 7. Once it has completed reboot and login: `sudo reboot`
 
@@ -31,7 +30,3 @@ Disable device:  `xinput disable <device id>`
 ### todo ###
 
 1. Automate git ssh credentials
-2. Add background automatically
-
-
-

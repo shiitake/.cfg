@@ -14,7 +14,7 @@ codename=$(lsb_release -cs)
 [ ! "$codename" = "buster" ] && [ ! "$codename" = "bullseye" ] && echo "This script only works on Debian Buster or Bullseye. You're running $codename" && exit 1
 
 # install pre-req packages
-apt-get install -y git sudo software-properties-common gnupg gnupg1 gnupg2
+apt-get install -y --no-install-recommends git sudo software-properties-common gnupg gnupg1 gnupg2
 
 # setup user permissions
 echo "$name ALL=(ALL) NOPASSWD:ALL" | tee "/etc/sudoers.d/$name"
@@ -55,6 +55,9 @@ sudo sh $home/.local/bin/setup/packages.sh
 
 # install everything else now
 sudo -u $name sh $home/.local/bin/setup/setup.sh
+
+# setup gpg key
+[ -n "$PASSPHRASE" ] && sudo -u $name $home/.local/bin/setup/setup-gpg.sh
 
 
 # update permissions to something more sensible
