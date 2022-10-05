@@ -54,7 +54,11 @@ Copy-Item -Path ./*.ps1 -Destination $profileDir -Exclude "bootstrap.ps1"
 Remove-Variable profileDir
 ```
 
-7. Install PowerTemplate `Import-Module -Name C:\git\.cfg\PowerShell\PowerTemplate\ -Verbose`
+7. Install some PowerShell stuff: 
+  a. PowerTemplate `Import-Module -Name C:\git\.cfg\PowerShell\PowerTemplate\ -Verbose`
+  b. Oh-My-Posh: `Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease`
+  c. Posh-git: `Install-Module posh-git -Scope CurrentUser`
+  d. Posh-SSH: `Install-Module -Name Posh-SSH`
 
 8. Setup neovim:
 * copy init.vim to `~\AppData\Local\nvim\init.vim`
