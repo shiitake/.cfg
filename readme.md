@@ -17,6 +17,8 @@ All the os specific files into their own branches (linux/windows).
 
 ## Windows ##
 
+1. Create git repository location: c:\git, clone this repo `git clone git@github.com:shiitake/.cfg.git` and checkout the windows branch `get checkout windows`
+
 2. Enable Window's Subsystem for Linux (WSL). From administrator PowerShell run `wsl --install`. This will require a reboot to fully complete
 
 2. Install Chocolatey - 
