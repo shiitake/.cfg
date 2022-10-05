@@ -1,6 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=Xsession
-Comment=This runs ~/.xsession
-Exec=/etc/X11/Xsession
-Type=Xsession
