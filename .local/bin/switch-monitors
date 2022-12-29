@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# This script will switch the order of displays. It currently only works with two monitors
+
+set -e
+
+# get display list
+displays=($(xrandr -q | grep ' connected' | awk '{ split($3,A,"+"); print $1, A[2] }'))
+
+# get orientation
+leftMon=${displays[1]}
+rightMon=${displays[3]}
+
+# check for offset
+[[ ${displays[2]} -gt ${displays[4]} ]] && rightMon=${displays[1]} && leftMon=${displays[3]}
+
+# switch monitors
+xrandr --auto --output "$rightMon" --left-of "$leftMon"
