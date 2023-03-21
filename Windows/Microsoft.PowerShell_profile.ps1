@@ -11,26 +11,31 @@ function subl { &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args }
 Import-Module Posh-SSH.psd1
 
 # Aliases
-$grep = get-alias -name grep
-if ($grep.count -lt 1) { new-alias grep findstr }
-$ssh = get-alias -name ssh
-if ($ssh.count -lt 1) { new-alias ssh new-sshsession }
+if (!(test-path alias:grep)) { new-alias grep findstr }
+if (!(test-path alias:ssh)) { new-alias ssh new-sshsession }
 
 # Import-Module oh-my-posh
 # Set-Theme -name 'paradox'
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\paradox.omp.json" | Invoke-Expression
 
-
-# Start-SshAgent
-$SSHAgentPid = Get-SSHAgent
-Write-Host "Agent PID: $SSHAgentPid"
-if ($SSHAgentPid -eq 0) {
-  Start-SshAgent
+# test for ssh service
+$sshService = Get-Service -Name ssh-agent -ErrorAction SilentlyContinue
+if ($sshService -eq $null) {
+	Write-Host "OpenSSH agent is not installed"
 }
 else {
-  Write-Host "Agent already started"
+	# make sure it will start automatically
+	if ($sshService.StartType -ne "Automatic") {
+		Write-Host "SSH agent is not set to automatically start"
+		Write-Host "Run the following from an elevated prompt: Get-Service ssh-agent | Set-Service -StartupType Automatic"		
+	}
+	if ($sshService.Status -ne "Running") {
+		Write-Host "SSH agent is not running"
+		Write-Host "Run the following from an elevated prompt: Start-Service ssh-agent"
+	} else {
+		Write-Host "SSH Agent is running"
+	}	
 }
-
 
 
 function Test-Administrator {
