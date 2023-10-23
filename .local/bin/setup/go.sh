@@ -11,7 +11,7 @@ name=$1
 # check if running the right os/disto
 # this has only been tested on debian running bullseye or buster
 codename=$(lsb_release -cs)
-[ ! "$codename" = "buster" ] && [ ! "$codename" = "bullseye" ] && [ ! "$codename" = "bullseye" ] && echo "This script only works on Debian Buster or Bullseye. You're running $codename" && exit 1
+[ ! "$codename" = "buster" ] && [ ! "$codename" = "bullseye" ] && [ ! "$codename" = "bookworm" ] && echo "This script only works on Debian Buster or Bullseye. You're running $codename" && exit 1
 
 # install pre-req packages
 apt-get install -y --no-install-recommends git sudo software-properties-common gnupg gnupg1 gnupg2
