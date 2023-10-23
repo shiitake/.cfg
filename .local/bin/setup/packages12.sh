@@ -15,8 +15,8 @@ add-apt-repository -rc "non-free-firmware" -y > /dev/null
 
 # re-add
 add-apt-repository -c "contrib" -y > /dev/null
-add-apt-repository "non-free" > /dev/null
-add-apt-repository "non-free-firmware" > /dev/null
+add-apt-repository "non-free" -y > /dev/null
+add-apt-repository "non-free-firmware" -y > /dev/null
 
 
 # remove existing brave key
@@ -69,6 +69,7 @@ gstreamer1.0-libav \
 gstreamer1.0-plugins-good \
 libd3dadapter9-mesa \
 libfontconfig1-dev \
+libfreetype-dev \
 libharfbuzz-dev \
 libnotify-bin \
 libpulse-dev \
@@ -86,11 +87,6 @@ qml-module-qtmultimedia \
 qtmultimedia5-dev \
 xdotool \
 xutils-dev
-
-#installing a few libs that are different between buster and bullseye
-# [ "$codename" = "buster" ] && apt-get install -y --no-install-recommends libfreetype6-dev
-# [ "$codename" = "bullseye" ] && apt-get install -y --no-install-recommends libfreetype-dev
-apt-get install -y --no-install-recommends libfreetype-dev
 
 
 # install the apps you know and love
@@ -140,6 +136,8 @@ unattended-upgrades \
 urlview \
 wireless-tools \
 zsh
+
+# msmtp throws up prompt for Apparmor
 
 
 # only do this after we've installed everything
